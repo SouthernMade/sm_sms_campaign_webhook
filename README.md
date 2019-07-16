@@ -59,7 +59,7 @@ Library documentation is managed using [YARD](https://yardoc.org). Ideally, the 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/SouthernMade/sm_sms_campaign_webhook.
+Bug reports and pull requests are welcome on GitHub at https://github.com/SouthernMade/sm_sms_campaign_webhook. Pull requests should be made against the develop branch. Extreme cases that require updates to supported gem versions will be handled case by case.
 
 ## License
 
