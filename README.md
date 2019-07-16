@@ -36,9 +36,26 @@ Right now, nothing happens! Soon, some useful details will emerge about how to i
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+This gem uses [git-flow](https://github.com/nvie/gitflow) to manage deployments. The default branches are used to manage development and production code.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+### Versioning
+
+Gem versioning follows [Semantic Versioning](https://semver.org).
+
+
+### Testing
+
+This project uses Rspec for testing. Specs must be green for any PR to be accepted!
+
+    $ bundle exec rspec
+
+The project is setup with [Travis CI](https://travis-ci.org) to automate test. The various environments that are regularly tested can be seen in [.travis.yml](https://github.com/SouthernMade/sm_sms_campaign_webhook/blob/develop/.travis.yml).
+
+### Documentation
+
+Library documentation is managed using [YARD](https://yardoc.org). Ideally, the documentation remains 100% covered as development progresses.
+
+    $ bundle exec yard
 
 ## Contributing
 
