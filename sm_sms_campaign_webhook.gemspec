@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/SouthernMade/sm_sms_campaign_webhook"
-  spec.metadata["changelog_uri"] = "https://github.com/SouthernMade/sm_sms_campaign_webhook/CHANGELOG.md"
+  spec.metadata["changelog_uri"] = "https://github.com/SouthernMade/sm_sms_campaign_webhook/blob/develop/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
