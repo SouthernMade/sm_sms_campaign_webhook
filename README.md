@@ -32,7 +32,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Right now, nothing happens! Soon, some useful details will emerge about how to ingest the SMS campaign payloads.
 
 ## Development
 
