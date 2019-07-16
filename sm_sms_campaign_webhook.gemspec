@@ -5,8 +5,8 @@ require "sm_sms_campaign_webhook/version"
 Gem::Specification.new do |spec|
   spec.name          = "sm_sms_campaign_webhook"
   spec.version       = SmSmsCampaignWebhook::VERSION
-  spec.authors       = ["Cameron Dykes"]
-  spec.email         = ["yellow5c@gmail.com"]
+  spec.authors       = ["Cameron Dykes", "Matt Mueller"]
+  spec.email         = ["cameron@southernmade.com", "matt@southernmade.com"]
 
   spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
   spec.description   = %q{TODO: Write a longer description or delete this line.}
