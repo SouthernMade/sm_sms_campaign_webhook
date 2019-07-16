@@ -1,6 +1,7 @@
 # SmSmsCampaignWebhook: Middleware providing webhook for Southern Made SMS Campaign Engagement
 
 [![Travis Build Status](https://travis-ci.org/SouthernMade/sm_sms_campaign_webhook.svg?branch=develop)](https://travis-ci.org/SouthernMade/sm_sms_campaign_webhook)
+[![Code Climate](https://api.codeclimate.com/v1/badges/2298f12a7d6f31688c9c/maintainability)](https://codeclimate.com/github/SouthernMade/sm_sms_campaign_webhook/maintainability)
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/sm_sms_campaign_webhook`. To experiment with that code, run `bin/console` for an interactive prompt.
 
