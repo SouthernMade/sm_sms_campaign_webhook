@@ -13,3 +13,4 @@
 # local dev
 *.swp
 .tool-versions
+Gemfile.lock
