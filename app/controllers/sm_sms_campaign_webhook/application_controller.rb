@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module SmSmsCampaignWebhook
+  # General webhook controller configuration.
   class ApplicationController < ActionController::API
     # protect_from_forgery with: :exception
   end
