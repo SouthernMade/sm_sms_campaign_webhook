@@ -1,5 +1,8 @@
 require "bundler/setup"
+require "simplecov"
 require "sm_sms_campaign_webhook"
+
+SimpleCov.start
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
