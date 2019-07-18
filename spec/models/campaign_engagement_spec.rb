@@ -30,6 +30,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
   end
 
   describe "#event_uuid" do
+    context "when payload uuid is missing" do
+      before do
+        payload.delete("uuid")
+      end
+
+      it "raises an error" do
+        expect do
+          subject.event_uuid
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+      end
+    end
+
     it "returns payload uuid" do
       expected_result = payload.fetch("uuid")
       expect(subject.event_uuid).to eq(expected_result)
@@ -41,6 +53,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
   end
 
   describe "#event_type" do
+    context "when payload type is missing" do
+      before do
+        payload.delete("type")
+      end
+
+      it "raises an error" do
+        expect do
+          subject.event_type
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+      end
+    end
+
     it "returns payload type" do
       expected_result = payload.fetch("type")
       expect(subject.event_type).to eq(expected_result)
@@ -52,6 +76,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
   end
 
   describe "#event_created_at" do
+    context "when payload created_at is missing" do
+      before do
+        payload.delete("created_at")
+      end
+
+      it "raises an error" do
+        expect do
+          subject.event_created_at
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+      end
+    end
+
     it "returns serialized payload created_at" do
       expected_value = DateTime.parse(payload.fetch("created_at"))
       expect(subject.event_created_at).to eq(expected_value)
@@ -63,6 +99,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
   end
 
   describe "#campaign_id" do
+    context "when payload data campaign id is missing" do
+      before do
+        payload["data"]["campaign"].delete("id")
+      end
+
+      it "raises an error" do
+        expect do
+          subject.campaign_id
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+      end
+    end
+
     it "returns payload data campaign id" do
       expected_result = payload.dig("data", "campaign", "id")
       expect(subject.campaign_id).to eq(expected_result)
@@ -74,6 +122,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
   end
 
   describe "#campaign_keyword" do
+    context "when payload data campaign keyword is missing" do
+      before do
+        payload["data"]["campaign"].delete("keyword")
+      end
+
+      it "raises an error" do
+        expect do
+          subject.campaign_keyword
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+      end
+    end
+
     it "returns payload data campaign keyword" do
       expected_result = payload.dig("data", "campaign", "keyword")
       expect(subject.campaign_keyword).to eq(expected_result)
@@ -85,6 +145,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
   end
 
   describe "#phone_id" do
+    context "when payload data phone id is missing" do
+      before do
+        payload["data"]["phone"].delete("id")
+      end
+
+      it "raises an error" do
+        expect do
+          subject.phone_id
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+      end
+    end
+
     it "returns payload data phone id" do
       expected_result = payload.dig("data", "phone", "id")
       expect(subject.phone_id).to eq(expected_result)
@@ -96,6 +168,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
   end
 
   describe "#phone_number" do
+    context "when payload data phone number is missing" do
+      before do
+        payload["data"]["phone"].delete("number")
+      end
+
+      it "raises an error" do
+        expect do
+          subject.phone_number
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+      end
+    end
+
     it "returns payload data phone number" do
       expected_result = payload.dig("data", "phone", "number")
       expect(subject.phone_number).to eq(expected_result)
@@ -107,6 +191,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
   end
 
   describe "#phone_campaign_state_id" do
+    context "when payload data phone_campaign_state id is missing" do
+      before do
+        payload["data"]["phone_campaign_state"].delete("id")
+      end
+
+      it "raises an error" do
+        expect do
+          subject.phone_campaign_state_id
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+      end
+    end
+
     it "returns payload data phone_campaign_state id" do
       expected_result = payload.dig("data", "phone_campaign_state", "id")
       expect(subject.phone_campaign_state_id).to eq(expected_result)
@@ -120,6 +216,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
   describe "#phone_campaign_state_answers"
 
   describe "#phone_campaign_state_completed?" do
+    context "when payload data phone_campaign_state completed is missing" do
+      before do
+        payload["data"]["phone_campaign_state"].delete("completed")
+      end
+
+      it "raises an error" do
+        expect do
+          subject.phone_campaign_state_completed?
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+      end
+    end
+
     context "when phone_campaign_state completed is false" do
       let(:payload) do
         campaign_engagement_hash(completed: false)
@@ -146,6 +254,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
   end
 
   describe "#phone_campaign_state_completed_at" do
+    context "when payload data phone_campaign_state completed_at is missing" do
+      before do
+        payload["data"]["phone_campaign_state"].delete("completed_at")
+      end
+
+      it "raises an error" do
+        expect do
+          subject.phone_campaign_state_completed_at
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+      end
+    end
+
     context "when phone_campaign_state completed_at is not present" do
       let(:payload) do
         campaign_engagement_hash(completed: false)

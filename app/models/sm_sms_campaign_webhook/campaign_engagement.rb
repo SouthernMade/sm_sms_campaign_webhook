@@ -13,49 +13,82 @@ module SmSmsCampaignWebhook
     end
 
     # @return [String] Campaign engagement event UUID
+    # @raise [InvalidPayload] when uuid missing from payload
     def event_uuid
-      @event_uuid ||= payload.fetch("uuid").freeze
+      @event_uuid ||= payload.fetch("uuid") do
+        raise InvalidPayload,
+              "uuid missing from payload #{payload.inspect}"
+      end.freeze
     end
 
     # @return [String] Campaign engagement event type
+    # @raise [InvalidPayload] when type missing from payload
     def event_type
-      @event_type ||= payload.fetch("type").freeze
+      @event_type ||= payload.fetch("type") do
+        raise InvalidPayload,
+              "type missing from payload #{payload.inspect}"
+      end.freeze
     end
 
     # @return [DateTime] Campaign engagement event timestamp
+    # @raise [InvalidPayload] when created_at missing from payload
     def event_created_at
       @event_created_at ||= begin
-        raw_created_at = payload.fetch("created_at")
+        raw_created_at = payload.fetch("created_at") do
+          raise InvalidPayload,
+                "created_at missing from payload #{payload.inspect}"
+        end
         DateTime.parse(raw_created_at).freeze
       end
     end
 
     # @return [Integer] ID of the engaged campaign
+    # @raise [InvalidPayload] when campaign id missing from payload
     def campaign_id
-      @campaign_id ||= campaign_hash.fetch("id")
+      @campaign_id ||= campaign_hash.fetch("id") do
+        raise InvalidPayload,
+              "campaign id missing from payload #{payload.inspect}"
+      end
     end
 
     # @return [String] Keyword of the engaged campaign
+    # @raise [InvalidPayload] when campaign keyword missing from payload
     def campaign_keyword
-      @campaign_keyword ||= campaign_hash.fetch("keyword").freeze
+      @campaign_keyword ||= campaign_hash.fetch("keyword") do
+        raise InvalidPayload,
+              "campaign keyword missing from payload #{payload.inspect}"
+      end.freeze
     end
 
     # @return [String] ID of the engaging phone
+    # @raise [InvalidPayload] when phone id missing from payload
     def phone_id
-      @phone_id ||= phone_hash.fetch("id")
+      @phone_id ||= phone_hash.fetch("id") do
+        raise InvalidPayload,
+              "phone id missing from payload #{payload.inspect}"
+      end
     end
 
     # @return [String] Phone number engaging the campaign
+    # @raise [InvalidPayload] when phone number missing from payload
     def phone_number
-      @phone_number ||= phone_hash.fetch("number").freeze
+      @phone_number ||= phone_hash.fetch("number") do
+        raise InvalidPayload,
+              "phone number missing from payload #{payload.inspect}"
+      end.freeze
     end
 
     # @return [Integer] ID of campaign engagement state record
+    # @raise [InvalidPayload] when phone_campaign_state id missing from payload
     def phone_campaign_state_id
-      @phone_campaign_state_id ||= phone_campaign_state_hash.fetch("id")
+      @phone_campaign_state_id ||= phone_campaign_state_hash.fetch("id") do
+        raise InvalidPayload,
+              "phone_campaign_state id missing from payload #{payload.inspect}"
+      end
     end
 
     # @return [TrueClass,FalseClass] Has campaign engagement completed?
+    # @raise [InvalidPayload] when phone_campaign_state completed missing from payload
     def phone_campaign_state_completed?
       # Has the boolean value already been assigned?
       if !@phone_campaign_state_completed.nil?
@@ -64,13 +97,20 @@ module SmSmsCampaignWebhook
 
       # Extract the value and memoize it.
       @phone_campaign_state_completed = phone_campaign_state_hash
-        .fetch("completed")
+        .fetch("completed") do
+          raise InvalidPayload,
+                "phone_campaign_state completed missing from payload #{payload.inspect}"
+        end
     end
 
     # @return [DateTime,NilClass] Timestamp of campaign engagement completion if completed
+    # @raise [InvalidPayload] when phone_campaign_state completed_at missing from payload
     def phone_campaign_state_completed_at
       @phone_campaign_state_completed_at ||= begin
-        raw_completed_at = phone_campaign_state_hash.fetch("completed_at")
+        raw_completed_at = phone_campaign_state_hash.fetch("completed_at") do
+          raise InvalidPayload,
+                "phone_campaign_state completed_at missing from payload #{payload.inspect}"
+        end
         DateTime.parse(raw_completed_at).freeze if raw_completed_at
       end
     end
@@ -79,23 +119,24 @@ module SmSmsCampaignWebhook
 
     # @return [Hash] Data from campaign engagement payload
     def payload_data
-      @payload_data ||= payload.fetch("data").freeze
+      @payload_data ||= payload.fetch("data", {}).freeze
     end
 
     # @return [Hash] Campaign hash from payload data
     def campaign_hash
-      @campaign_hash ||= payload_data.fetch("campaign").freeze
+      @campaign_hash ||= payload_data.fetch("campaign", {}).freeze
     end
 
     # @return [Hash] Phone hash from payload data
     def phone_hash
-      @phone_hash ||= payload_data.fetch("phone").freeze
+      @phone_hash ||= payload_data.fetch("phone", {}).freeze
     end
 
     # @return [Hash] Campaign engagement state hash from payload data
     def phone_campaign_state_hash
-      @phone_campaign_state_hash ||= payload_data.fetch("phone_campaign_state")
-                                                 .freeze
+      @phone_campaign_state_hash ||= payload_data
+        .fetch("phone_campaign_state", {})
+        .freeze
     end
   end
 end
