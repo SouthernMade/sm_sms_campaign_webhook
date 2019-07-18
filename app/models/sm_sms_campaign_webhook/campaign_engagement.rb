@@ -15,19 +15,23 @@ module SmSmsCampaignWebhook
     # @return [String] Campaign engagement event UUID
     # @raise [InvalidPayload] when uuid missing from payload
     def event_uuid
-      @event_uuid ||= payload.fetch("uuid") do
-        raise InvalidPayload,
-              "uuid missing from payload #{payload.inspect}"
-      end.freeze
+      @event_uuid ||= String(
+        payload.fetch("uuid") do
+          raise InvalidPayload,
+                "uuid missing from payload #{payload.inspect}"
+        end.freeze
+      )
     end
 
     # @return [String] Campaign engagement event type
     # @raise [InvalidPayload] when type missing from payload
     def event_type
-      @event_type ||= payload.fetch("type") do
-        raise InvalidPayload,
-              "type missing from payload #{payload.inspect}"
-      end.freeze
+      @event_type ||= String(
+        payload.fetch("type") do
+          raise InvalidPayload,
+                "type missing from payload #{payload.inspect}"
+        end.freeze
+      )
     end
 
     # @return [DateTime] Campaign engagement event timestamp
@@ -54,10 +58,12 @@ module SmSmsCampaignWebhook
     # @return [String] Keyword of the engaged campaign
     # @raise [InvalidPayload] when campaign keyword missing from payload
     def campaign_keyword
-      @campaign_keyword ||= campaign_hash.fetch("keyword") do
-        raise InvalidPayload,
-              "campaign keyword missing from payload #{payload.inspect}"
-      end.freeze
+      @campaign_keyword ||= String(
+        campaign_hash.fetch("keyword") do
+          raise InvalidPayload,
+                "campaign keyword missing from payload #{payload.inspect}"
+        end.freeze
+      )
     end
 
     # @return [Integer] ID of the engaging phone
@@ -72,10 +78,12 @@ module SmSmsCampaignWebhook
     # @return [String] Phone number engaging the campaign
     # @raise [InvalidPayload] when phone number missing from payload
     def phone_number
-      @phone_number ||= phone_hash.fetch("number") do
-        raise InvalidPayload,
-              "phone number missing from payload #{payload.inspect}"
-      end.freeze
+      @phone_number ||= String(
+        phone_hash.fetch("number") do
+          raise InvalidPayload,
+                "phone number missing from payload #{payload.inspect}"
+        end.freeze
+      )
     end
 
     # @return [Integer] ID of campaign engagement state record
