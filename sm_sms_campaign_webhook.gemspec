@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = "~> 2.5"
 
   # Runtime dependencies.
-  spec.add_dependency "rails", "~> 5.2.3"
+  spec.add_dependency "rails", [">= 5.2.3", "< 6.1"]
 
   # Development + test dependencies.
   spec.add_development_dependency "bundler", "~> 2.0"
