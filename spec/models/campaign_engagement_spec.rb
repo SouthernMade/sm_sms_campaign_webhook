@@ -264,6 +264,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
   describe "#phone_campaign_state_answers"
 
   describe "#phone_campaign_state_completed?" do
+    context "when payload data phone_campaign_state completed has unexpected value" do
+      before do
+        payload["data"]["phone_campaign_state"]["completed"] = "completed"
+      end
+
+      it "raises an error" do
+        expect do
+          subject.phone_campaign_state_completed?
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
+      end
+    end
+
     context "when payload data phone_campaign_state completed is missing" do
       before do
         payload["data"]["phone_campaign_state"].delete("completed")

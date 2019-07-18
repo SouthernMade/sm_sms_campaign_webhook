@@ -119,6 +119,7 @@ module SmSmsCampaignWebhook
 
     # @return [TrueClass,FalseClass] Has campaign engagement completed?
     # @raise [InvalidPayload] when phone_campaign_state completed missing from payload
+    # @raise [InvalidPayloadValue] when phone_campaign_state completed is not boolean
     def phone_campaign_state_completed?
       # Has the boolean value already been assigned?
       if !@phone_campaign_state_completed.nil?
@@ -126,11 +127,21 @@ module SmSmsCampaignWebhook
       end
 
       # Extract the value and memoize it.
-      @phone_campaign_state_completed = phone_campaign_state_hash
-        .fetch("completed") do
-          raise InvalidPayload,
-                "phone_campaign_state completed missing from payload #{payload.inspect}"
+      @phone_campaign_state_completed = begin
+        completed = phone_campaign_state_hash
+          .fetch("completed") do
+            raise InvalidPayload,
+                  "phone_campaign_state completed missing from payload #{payload.inspect}"
+          end
+
+        # Is this a boolean value?
+        if [true, false].none?(completed)
+          raise InvalidPayloadValue,
+                "phone_campaign_state completed has invalid boolean value #{payload.inspect}"
         end
+
+        completed
+      end
     end
 
     # @return [DateTime,NilClass] Timestamp of campaign engagement completion if completed
