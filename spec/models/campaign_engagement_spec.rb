@@ -23,10 +23,20 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
     end
   end
 
+  describe "#payload" do
+    it "freezes the value" do
+      expect(subject.payload).to be_frozen
+    end
+  end
+
   describe "#event_uuid" do
     it "returns payload uuid" do
       expected_result = payload.fetch("uuid")
       expect(subject.event_uuid).to eq(expected_result)
+    end
+
+    it "freezes the value" do
+      expect(subject.event_uuid).to be_frozen
     end
   end
 
@@ -35,12 +45,20 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       expected_result = payload.fetch("type")
       expect(subject.event_type).to eq(expected_result)
     end
+
+    it "freezes the value" do
+      expect(subject.event_type).to be_frozen
+    end
   end
 
   describe "#event_created_at" do
     it "returns serialized payload created_at" do
       expected_value = DateTime.parse(payload.fetch("created_at"))
       expect(subject.event_created_at).to eq(expected_value)
+    end
+
+    it "freezes the value" do
+      expect(subject.event_created_at).to be_frozen
     end
   end
 
@@ -49,12 +67,20 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       expected_result = payload.dig("data", "campaign", "id")
       expect(subject.campaign_id).to eq(expected_result)
     end
+
+    it "freezes the value" do
+      expect(subject.campaign_id).to be_frozen
+    end
   end
 
   describe "#campaign_keyword" do
     it "returns payload data campaign keyword" do
       expected_result = payload.dig("data", "campaign", "keyword")
       expect(subject.campaign_keyword).to eq(expected_result)
+    end
+
+    it "freezes the value" do
+      expect(subject.campaign_keyword).to be_frozen
     end
   end
 
@@ -63,6 +89,10 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       expected_result = payload.dig("data", "phone", "id")
       expect(subject.phone_id).to eq(expected_result)
     end
+
+    it "freezes the value" do
+      expect(subject.phone_id).to be_frozen
+    end
   end
 
   describe "#phone_number" do
@@ -70,12 +100,20 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       expected_result = payload.dig("data", "phone", "number")
       expect(subject.phone_number).to eq(expected_result)
     end
+
+    it "freezes the value" do
+      expect(subject.phone_number).to be_frozen
+    end
   end
 
   describe "#phone_campaign_state_id" do
     it "returns payload data phone_campaign_state id" do
       expected_result = payload.dig("data", "phone_campaign_state", "id")
       expect(subject.phone_campaign_state_id).to eq(expected_result)
+    end
+
+    it "freezes the value" do
+      expect(subject.phone_campaign_state_id).to be_frozen
     end
   end
 
@@ -101,6 +139,10 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
         expect(subject.phone_campaign_state_completed?).to eq(true)
       end
     end
+
+    it "freezes the value" do
+      expect(subject.phone_campaign_state_completed?).to be_frozen
+    end
   end
 
   describe "#phone_campaign_state_completed_at" do
@@ -124,6 +166,10 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
           payload.dig("data", "phone_campaign_state", "completed_at")
         )
         expect(subject.phone_campaign_state_completed_at).to eq(expected_result)
+      end
+
+      it "freezes the value" do
+        expect(subject.phone_campaign_state_completed_at).to be_frozen
       end
     end
   end
