@@ -35,6 +35,20 @@ Or install it yourself as:
 
 Right now, nothing happens! Soon, some useful details will emerge about how to ingest the SMS campaign payloads.
 
+### Mount the Webhook Engine
+
+Add the following to `config/routes.rb` in your app to mount the webhook:
+
+```ruby
+mount SmSmsCampaignWebhook::Engine => "/sms_campaign"
+```
+
+This sets the app up to receive POST requests from the SMS campaign service:
+
+    POST /sms_campaign/api/webhook
+
+Be sure to replace `/sms_campaign` with whatever mount point you choose. Once you share the webhook URI with your project manager, avoid changing it; they will configure it with the correspending SMS campaign!
+
 ## Development
 
 This gem uses [git-flow](https://github.com/nvie/gitflow) to manage deployments. The default branches are used to manage development and production code.
