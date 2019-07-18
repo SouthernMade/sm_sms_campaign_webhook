@@ -48,11 +48,17 @@ module SmSmsCampaignWebhook
 
     # @return [Integer] ID of the engaged campaign
     # @raise [InvalidPayload] when campaign id missing from payload
+    # @raise [InvalidPayloadValue] when campaign id not numeric
     def campaign_id
-      @campaign_id ||= campaign_hash.fetch("id") do
-        raise InvalidPayload,
-              "campaign id missing from payload #{payload.inspect}"
-      end
+      @campaign_id ||= Integer(
+        campaign_hash.fetch("id") do
+          raise InvalidPayload,
+                "campaign id missing from payload #{payload.inspect}"
+        end
+      )
+    rescue ArgumentError
+      raise InvalidPayloadValue,
+            "campaign id has invalid integer value #{payload.inspect}"
     end
 
     # @return [String] Keyword of the engaged campaign
@@ -68,11 +74,17 @@ module SmSmsCampaignWebhook
 
     # @return [Integer] ID of the engaging phone
     # @raise [InvalidPayload] when phone id missing from payload
+    # @raise [InvalidPayloadValue] when phone id not numeric
     def phone_id
-      @phone_id ||= phone_hash.fetch("id") do
-        raise InvalidPayload,
-              "phone id missing from payload #{payload.inspect}"
-      end
+      @phone_id ||= Integer(
+        phone_hash.fetch("id") do
+          raise InvalidPayload,
+                "phone id missing from payload #{payload.inspect}"
+        end
+      )
+    rescue ArgumentError
+      raise InvalidPayloadValue,
+            "phone id has invalid integer value #{payload.inspect}"
     end
 
     # @return [String] Phone number engaging the campaign
@@ -88,11 +100,17 @@ module SmSmsCampaignWebhook
 
     # @return [Integer] ID of campaign engagement state record
     # @raise [InvalidPayload] when phone_campaign_state id missing from payload
+    # @raise [InvalidPayloadValue] when phone_campaign_state id not numeric
     def phone_campaign_state_id
-      @phone_campaign_state_id ||= phone_campaign_state_hash.fetch("id") do
-        raise InvalidPayload,
-              "phone_campaign_state id missing from payload #{payload.inspect}"
-      end
+      @phone_campaign_state_id ||= Integer(
+        phone_campaign_state_hash.fetch("id") do
+          raise InvalidPayload,
+                "phone_campaign_state id missing from payload #{payload.inspect}"
+        end
+      )
+    rescue ArgumentError
+      raise InvalidPayloadValue,
+            "phone_campaign_state id has invalid integer value #{payload.inspect}"
     end
 
     # @return [TrueClass,FalseClass] Has campaign engagement completed?

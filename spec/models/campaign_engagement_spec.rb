@@ -111,6 +111,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
     end
 
+    context "when payload data campaign id has unexpected value" do
+      before do
+        payload["data"]["campaign"]["id"] = "campaign id"
+      end
+
+      it "raises an error" do
+        expect do
+          subject.campaign_id
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
+      end
+    end
+
     it "returns payload data campaign id" do
       expected_result = payload.dig("data", "campaign", "id")
       expect(subject.campaign_id).to eq(expected_result)
@@ -157,6 +169,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
     end
 
+    context "when payload data phone id has unexpected value" do
+      before do
+        payload["data"]["phone"]["id"] = "phone id"
+      end
+
+      it "raises an error" do
+        expect do
+          subject.phone_id
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
+      end
+    end
+
     it "returns payload data phone id" do
       expected_result = payload.dig("data", "phone", "id")
       expect(subject.phone_id).to eq(expected_result)
@@ -200,6 +224,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
         expect do
           subject.phone_campaign_state_id
         end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+      end
+    end
+
+    context "when payload data phone_campaign_state id has unexpected value" do
+      before do
+        payload["data"]["phone_campaign_state"]["id"] = "phone_campaign_state id"
+      end
+
+      it "raises an error" do
+        expect do
+          subject.phone_campaign_state_id
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
       end
     end
 
