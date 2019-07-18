@@ -36,6 +36,7 @@ module SmSmsCampaignWebhook
 
     # @return [DateTime] Campaign engagement event timestamp
     # @raise [InvalidPayload] when created_at missing from payload
+    # @raise [InvalidPayloadValue] when created_at not datetime
     def event_created_at
       @event_created_at ||= begin
         raw_created_at = payload.fetch("created_at") do
@@ -44,6 +45,9 @@ module SmSmsCampaignWebhook
         end
         DateTime.parse(raw_created_at).freeze
       end
+    rescue ArgumentError
+      raise InvalidPayloadValue,
+            "created_at has invalid datetime value #{payload.inspect}"
     end
 
     # @return [Integer] ID of the engaged campaign
@@ -131,6 +135,7 @@ module SmSmsCampaignWebhook
 
     # @return [DateTime,NilClass] Timestamp of campaign engagement completion if completed
     # @raise [InvalidPayload] when phone_campaign_state completed_at missing from payload
+    # @raise [InvalidPayloadValue] when phone_campaign_state completed_at not datetime
     def phone_campaign_state_completed_at
       @phone_campaign_state_completed_at ||= begin
         raw_completed_at = phone_campaign_state_hash.fetch("completed_at") do
@@ -139,6 +144,9 @@ module SmSmsCampaignWebhook
         end
         DateTime.parse(raw_completed_at).freeze if raw_completed_at
       end
+    rescue ArgumentError
+      raise InvalidPayloadValue,
+            "phone_campaign_state completed_at has invalid datetime value #{payload.inspect}"
     end
 
     private

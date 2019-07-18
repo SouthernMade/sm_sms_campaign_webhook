@@ -88,6 +88,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
     end
 
+    context "when payload created_at has unexpected value" do
+      before do
+        payload["created_at"] = "created at"
+      end
+
+      it "raises an error" do
+        expect do
+          subject.event_created_at
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
+      end
+    end
+
     it "returns serialized payload created_at" do
       expected_value = DateTime.parse(payload.fetch("created_at"))
       expect(subject.event_created_at).to eq(expected_value)
@@ -299,6 +311,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
         expect do
           subject.phone_campaign_state_completed_at
         end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+      end
+    end
+
+    context "when payload data phone_campaign_state completed_at has unexpected value" do
+      before do
+        payload["data"]["phone_campaign_state"]["completed_at"] = "completed at"
+      end
+
+      it "raises an error" do
+        expect do
+          subject.phone_campaign_state_completed_at
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
       end
     end
 
