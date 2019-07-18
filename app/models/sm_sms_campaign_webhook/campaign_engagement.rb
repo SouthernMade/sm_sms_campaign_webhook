@@ -60,7 +60,7 @@ module SmSmsCampaignWebhook
       end.freeze
     end
 
-    # @return [String] ID of the engaging phone
+    # @return [Integer] ID of the engaging phone
     # @raise [InvalidPayload] when phone id missing from payload
     def phone_id
       @phone_id ||= phone_hash.fetch("id") do
