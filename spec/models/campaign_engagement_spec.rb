@@ -261,8 +261,6 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
     end
   end
 
-  describe "#phone_campaign_state_answers"
-
   describe "#phone_campaign_state_completed?" do
     context "when payload data phone_campaign_state completed has unexpected value" do
       before do
