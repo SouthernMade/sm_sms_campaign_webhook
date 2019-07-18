@@ -13,7 +13,6 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
 
   spec.metadata["allowed_push_host"] = "https://rubygems.org"
-
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/SouthernMade/sm_sms_campaign_webhook"
   spec.metadata["changelog_uri"] = "https://github.com/SouthernMade/sm_sms_campaign_webhook/blob/develop/CHANGELOG.md"
@@ -26,6 +25,9 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+
+  # Required version of Ruby guided by Rails.
+  spec.required_ruby_version = "~> 2.5"
 
   # Runtime dependencies.
   spec.add_dependency "rails", "~> 5.2.3"
