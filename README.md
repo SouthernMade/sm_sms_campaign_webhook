@@ -17,6 +17,8 @@ Work closely with your Southern Made project manager to gather details about wha
 
 ## Installation
 
+This gem is tested with Rails 5.2.x, 6.0.x versions.
+
 Add this line to your application's Gemfile:
 
 ```ruby
