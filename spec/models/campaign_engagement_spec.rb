@@ -401,4 +401,36 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       expect(subject.phone_campaign_state_answers).to be_frozen
     end
   end
+
+  describe "#answer_for" do
+    let(:field) do
+      payload
+        .dig(
+          "data",
+          "phone_campaign_state",
+          "answers"
+        )
+        .keys
+        .first
+    end
+
+    context "when answer for field is not found" do
+      it "returns nil" do
+        expect(
+          subject.answer_for(field: "other_#{field}")
+        ).to be_nil
+      end
+    end
+
+    context "when answer for field is found" do
+      it "returns serialized answer" do
+        expected_result = subject.phone_campaign_state_answers.detect do |answer|
+          answer.field == field
+        end
+        expect(
+          subject.answer_for(field: field)
+        ).to eq(expected_result)
+      end
+    end
+  end
 end

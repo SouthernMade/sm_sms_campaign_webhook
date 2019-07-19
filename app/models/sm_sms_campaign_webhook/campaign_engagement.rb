@@ -182,6 +182,14 @@ module SmSmsCampaignWebhook
       end
     end
 
+    # @param field [String] Answer data to find
+    # @return [Answer,NilClass] Serialized answer for field when found
+    def answer_for(field:)
+      phone_campaign_state_answers.detect do |answer|
+        answer.field == field
+      end
+    end
+
     private
 
     # @return [Hash] Data from campaign engagement payload
