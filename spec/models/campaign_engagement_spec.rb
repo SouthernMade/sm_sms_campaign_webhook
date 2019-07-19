@@ -8,7 +8,7 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
     campaign_engagement_hash
   end
 
-  subject { described_class.new(payload) }
+  subject { described_class.new(payload: payload) }
 
   describe "attributes" do
     context ":payload" do
