@@ -18,6 +18,14 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
   end
 
   describe "#initialize" do
+    context "when :payload param is not present" do
+      it "raises an error" do
+        expect do
+          described_class.new
+        end.to raise_error(ArgumentError)
+      end
+    end
+
     it "assigns param to @payload" do
       expect(subject.payload).to eq(payload)
     end
