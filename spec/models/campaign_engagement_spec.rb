@@ -414,6 +414,14 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
         .first
     end
 
+    context "when :field param is not present" do
+      it "raises an error" do
+        expect do
+          subject.answer_for
+        end.to raise_error(ArgumentError)
+      end
+    end
+
     context "when answer for field is not found" do
       it "returns nil" do
         expect(
