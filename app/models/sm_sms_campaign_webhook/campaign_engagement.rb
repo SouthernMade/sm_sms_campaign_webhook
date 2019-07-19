@@ -160,6 +160,28 @@ module SmSmsCampaignWebhook
             "phone_campaign_state completed_at has invalid datetime value #{payload.inspect}"
     end
 
+    # @return [Array<Answer>] Serialized campaign engagement answers
+    # @raise [InvalidPayload] when phone_campaign_state answers missing from payload
+    # @raise [InvalidPayloadValue] when phone_campaign_state answers not hash
+    def phone_campaign_state_answers
+      @phone_campaign_state_answers ||= begin
+        # Extract answers data from payload.
+        data = phone_campaign_state_hash.fetch("answers") do
+          raise InvalidPayload,
+            "phone_campaign_state answers missing from payload #{payload.inspect}"
+        end
+        
+        # Is this hash data?
+        if !data.is_a?(Hash)
+          raise InvalidPayloadValue,
+            "phone_campaign_state answers has invalid hash value #{payload.inspect}"
+        end
+
+        # Serialize answers data.
+        Answer.serialize(data: data).freeze
+      end
+    end
+
     private
 
     # @return [Hash] Data from campaign engagement payload

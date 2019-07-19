@@ -363,4 +363,42 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
     end
   end
+
+  describe "#phone_campaign_state_answers" do
+    context "when phone_campaign_state answers is missing" do
+      before do
+        payload["data"]["phone_campaign_state"].delete("answers")
+      end
+
+      it "raises an error" do
+        expect do
+          subject.phone_campaign_state_answers
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+      end
+    end
+
+    context "when phone_campaign_state answers has unexpected value" do
+      before do
+        payload["data"]["phone_campaign_state"]["answers"] = "answers"
+      end
+
+      it "raises an error" do
+        expect do
+          subject.phone_campaign_state_answers
+        end.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
+      end
+    end
+
+    it "returns serialized phone_campaign_state answers" do
+      result = subject.phone_campaign_state_answers
+      expect(result).to be_a(Array)
+      result.each do |serialized_answer|
+        expect(serialized_answer).to be_a(described_class::Answer)
+      end
+    end
+
+    it "freezes the value" do
+      expect(subject.phone_campaign_state_answers).to be_frozen
+    end
+  end
 end
