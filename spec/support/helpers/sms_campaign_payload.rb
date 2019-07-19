@@ -3,6 +3,21 @@ require "securerandom"
 module Helpers
   # Helpers to provide sample SMS campaign payloads.
   module SmsCampaignPayload
+    # @return [String] Unsupported payload as JSON
+    def unsupported_event_json
+      {
+        uuid: SecureRandom.uuid,
+        object: "event",
+        type: "unsupported",
+        created_at: Time.zone.now
+      }.to_json
+    end
+
+    # @return [Hash] Unsupported payload deserialized from JSON
+    def unsupported_event_hash
+      JSON.parse(unsupported_event_json)
+    end
+
     # @return [String] Campaign engagement payload as JSON
     def campaign_engagement_json(completed: false, total_answers: 1)
       {
