@@ -71,6 +71,12 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement::Answer, type: :model do
     end
   end
 
+  let(:instance_params) do
+    {
+      field: field,
+      answer_hash: answer_hash
+    }
+  end
   let(:field) { payload.keys.first }
   let(:answer_hash) { payload.fetch(field) }
   let(:payload) do
@@ -82,7 +88,7 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement::Answer, type: :model do
   end
 
   subject do
-    described_class.new(field: field, answer_hash: answer_hash)
+    described_class.new(instance_params)
   end
 
   describe "attributes" do
@@ -98,6 +104,26 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement::Answer, type: :model do
   end
 
   describe "#initialize" do
+    context "when :field param is not present" do
+      before do
+        instance_params.delete(:field)
+      end
+
+      it "raises an error" do
+        expect { subject }.to raise_error(ArgumentError)
+      end
+    end
+
+    context "when :answer_hash param is not present" do
+      before do
+        instance_params.delete(:answer_hash)
+      end
+
+      it "raises an error" do
+        expect { subject }.to raise_error(ArgumentError)
+      end
+    end
+
     it "assigns field to @field" do
       expect(subject.field).to eq(field)
     end
