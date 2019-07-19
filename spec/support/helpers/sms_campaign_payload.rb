@@ -44,7 +44,7 @@ module Helpers
       }.to_json
     end
 
-    # @return [Hash] Campaign engagement payload serialized JSON
+    # @return [Hash] Campaign engagement payload deserialized from JSON
     def campaign_engagement_hash(completed: false, total_answers: 1)
       JSON.parse(
         campaign_engagement_json(

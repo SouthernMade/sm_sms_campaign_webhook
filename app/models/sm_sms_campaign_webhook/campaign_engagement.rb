@@ -160,7 +160,7 @@ module SmSmsCampaignWebhook
             "phone_campaign_state completed_at has invalid datetime value #{payload.inspect}"
     end
 
-    # @return [Array<Answer>] Serialized campaign engagement answers
+    # @return [Array<Answer>] Modeled campaign engagement answers
     # @raise [InvalidPayload] when phone_campaign_state answers missing from payload
     # @raise [InvalidPayloadValue] when phone_campaign_state answers not hash
     def phone_campaign_state_answers
@@ -177,13 +177,13 @@ module SmSmsCampaignWebhook
             "phone_campaign_state answers has invalid hash value #{payload.inspect}"
         end
 
-        # Serialize answers data.
-        Answer.serialize(data: data).freeze
+        # Cast answers data.
+        Answer.cast(data: data).freeze
       end
     end
 
     # @param field [String] Answer data to find
-    # @return [Answer,NilClass] Serialized answer for field when found
+    # @return [Answer,NilClass] Modeled answer for field when found
     def answer_for(field:)
       phone_campaign_state_answers.detect do |answer|
         answer.field == field

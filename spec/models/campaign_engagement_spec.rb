@@ -108,7 +108,7 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
     end
 
-    it "returns serialized payload created_at" do
+    it "returns coerced payload created_at" do
       expected_value = DateTime.parse(payload.fetch("created_at"))
       expect(subject.event_created_at).to eq(expected_value)
     end
@@ -359,7 +359,7 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
         campaign_engagement_hash(completed: true)
       end
 
-      it "returns serialized payload data phone_campaign_state completed_at" do
+      it "returns coerced payload data phone_campaign_state completed_at" do
         expected_result = DateTime.parse(
           payload.dig("data", "phone_campaign_state", "completed_at")
         )
@@ -397,11 +397,11 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
     end
 
-    it "returns serialized phone_campaign_state answers" do
+    it "returns modeled phone_campaign_state answers" do
       result = subject.phone_campaign_state_answers
       expect(result).to be_a(Array)
-      result.each do |serialized_answer|
-        expect(serialized_answer).to be_a(described_class::Answer)
+      result.each do |modeled_answer|
+        expect(modeled_answer).to be_a(described_class::Answer)
       end
     end
 
@@ -439,7 +439,7 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
     end
 
     context "when answer for field is found" do
-      it "returns serialized answer" do
+      it "returns modeled answer" do
         expected_result = subject.phone_campaign_state_answers.detect do |answer|
           answer.field == field
         end
