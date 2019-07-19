@@ -8,7 +8,7 @@ module SmSmsCampaignWebhook
     attr_reader :payload
 
     # @param payload [Hash] Campaign engagement event payload
-    def initialize(payload)
+    def initialize(payload:)
       @payload = payload.deep_dup.freeze
     end
 

@@ -8,7 +8,7 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
     campaign_engagement_hash
   end
 
-  subject { described_class.new(payload) }
+  subject { described_class.new(payload: payload) }
 
   describe "attributes" do
     context ":payload" do
@@ -18,6 +18,14 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
   end
 
   describe "#initialize" do
+    context "when :payload param is not present" do
+      it "raises an error" do
+        expect do
+          described_class.new
+        end.to raise_error(ArgumentError)
+      end
+    end
+
     it "assigns param to @payload" do
       expect(subject.payload).to eq(payload)
     end
@@ -412,6 +420,14 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
         )
         .keys
         .first
+    end
+
+    context "when :field param is not present" do
+      it "raises an error" do
+        expect do
+          subject.answer_for
+        end.to raise_error(ArgumentError)
+      end
     end
 
     context "when answer for field is not found" do
