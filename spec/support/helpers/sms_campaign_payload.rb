@@ -21,7 +21,20 @@ module Helpers
           },
           phone_campaign_state: {
             id: rand(1..100),
-            answers: {},
+            answers: {
+              field: {
+                value: [
+                  "answer string",
+                  "email@example.com",
+                  "2000-07-04",
+                  42,
+                  true,
+                  false,
+                  "TN"
+                ].sample,
+                collected_at: Time.zone.now
+              }
+            },
             completed: completed,
             completed_at: (completed ? Time.zone.now : nil)
           }
