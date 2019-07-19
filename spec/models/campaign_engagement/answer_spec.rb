@@ -4,6 +4,65 @@ require_relative "../../support/helpers/sms_campaign_payload"
 RSpec.describe SmSmsCampaignWebhook::CampaignEngagement::Answer, type: :model do
   include Helpers::SmsCampaignPayload
 
+  describe ".serialize" do
+    context "when data is empty" do
+      let(:data) { Hash.new }
+
+      it "returns an empty array" do
+        expect(
+          described_class.serialize(data: data)
+        ).to eq([])
+      end
+    end
+
+    context "when data has one answer" do
+      let(:data) do
+        campaign_engagement_hash(total_answers: 1).dig(
+          "data",
+          "phone_campaign_state",
+          "answers"
+        )
+      end
+
+      it "returns array with serialized answer" do
+        result = described_class.serialize(data: data)
+        expect(result).to be_a(Array)
+        expect(result.length).to eq(1)
+        expect(result[0]).to be_a(described_class)
+      end
+    end
+
+    context "when data has many answers" do
+      let(:data) do
+        campaign_engagement_hash(total_answers: 3).dig(
+          "data",
+          "phone_campaign_state",
+          "answers"
+        )
+      end
+
+      it "returns array with serialized answers sorted by collected_at" do
+        result = described_class.serialize(data: data)
+        expect(result).to be_a(Array)
+        expect(result.length).to eq(3)
+        expect(result[0]).to be_a(described_class)
+        expect(result[1]).to be_a(described_class)
+        expect(result[2]).to be_a(described_class)
+
+        expected_order = data
+          .map do |field, answer_hash|
+            answer_hash.fetch("collected_at")
+          end
+          .map do |collected_at|
+            DateTime.parse(collected_at)
+          end
+          .sort
+        result_order = result.map(&:collected_at)
+        expect(result_order).to eq(expected_order)
+      end
+    end
+  end
+
   let(:field) { payload.keys.first }
   let(:answer_hash) { payload.fetch(field) }
   let(:payload) do

@@ -6,6 +6,13 @@ module SmSmsCampaignWebhook
   class CampaignEngagement
     # Data model for campaign engagement answer data.
     class Answer
+      # @return [Array<Answer>] Serialized answer data sorted by collected_at
+      def self.serialize(data:)
+        data.map do |field, answer_hash|
+          new(field: field, answer_hash: answer_hash)
+        end.sort_by(&:collected_at)
+      end
+
       attr_reader :field,
                   :answer_hash
 
