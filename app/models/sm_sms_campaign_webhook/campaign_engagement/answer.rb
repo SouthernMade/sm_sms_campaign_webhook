@@ -6,6 +6,7 @@ module SmSmsCampaignWebhook
   class CampaignEngagement
     # Data model for campaign engagement answer data.
     class Answer
+      # @param data [Hash] Answers from payload
       # @return [Array<Answer>] Serialized answer data sorted by collected_at
       def self.serialize(data:)
         data.map do |field, answer_hash|

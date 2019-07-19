@@ -5,6 +5,14 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement::Answer, type: :model do
   include Helpers::SmsCampaignPayload
 
   describe ".serialize" do
+    context "when :data param is not present" do
+      it "raises an error" do
+        expect do
+          described_class.serialize
+        end.to raise_error(ArgumentError)
+      end
+    end
+
     context "when data is empty" do
       let(:data) { Hash.new }
 
