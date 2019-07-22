@@ -6,7 +6,7 @@ module SmSmsCampaignWebhook
     # @param payload [Hash] Deserialized payload from SMS campaign service
     # @return [CampaignEngagement,NilClass] modeled payload for supported types
     # @see CampaignEngagement
-    def self.cast(payload:)
+    def self.dispatch(payload:)
       case payload.fetch("type", "unknown")
       when "campaign.engagement"
         CampaignEngagement.new(payload: payload)

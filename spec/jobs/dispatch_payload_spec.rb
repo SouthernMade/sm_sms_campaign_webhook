@@ -13,7 +13,7 @@ RSpec.describe SmSmsCampaignWebhook::DispatchPayloadJob, type: :job do
 
   describe "#perform_now" do
     it "dispatches a sms campaign payload" do
-      expect(SmSmsCampaignWebhook::PayloadOperation).to receive(:cast)
+      expect(SmSmsCampaignWebhook::PayloadOperation).to receive(:dispatch)
         .with(payload: payload)
       described_class.perform_now(payload)
     end

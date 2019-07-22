@@ -6,9 +6,9 @@ module SmSmsCampaignWebhook
   # Handles SMS campaign payload dispatch to processor async.
   class DispatchPayloadJob < ApplicationJob
     # @param payload [Hash] Deserialized payload from SMS campaign service
-    # @see PayloadOperation.cast
+    # @see PayloadOperation.dispatch
     def perform(payload)
-      PayloadOperation.cast(payload: payload)
+      PayloadOperation.dispatch(payload: payload)
     end
   end
 end

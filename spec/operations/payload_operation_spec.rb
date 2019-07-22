@@ -1,5 +1,5 @@
 RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
-  describe ".cast" do
+  describe ".dispatch" do
     let(:method_params) do
       {
         payload: payload
@@ -16,7 +16,7 @@ RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
 
       it "raises an error" do
         expect do
-          described_class.cast(method_params)
+          described_class.dispatch(method_params)
         end.to raise_error(ArgumentError)
       end
     end
@@ -28,7 +28,7 @@ RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
 
       it "returns payload modeled as campaign engagement" do
         expect(
-          described_class.cast(method_params)
+          described_class.dispatch(method_params)
         ).to be_a(SmSmsCampaignWebhook::CampaignEngagement)
       end
     end
@@ -40,7 +40,7 @@ RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
 
       it "returns nil" do
         expect(
-          described_class.cast(method_params)
+          described_class.dispatch(method_params)
         ).to be_nil
       end
     end
@@ -50,7 +50,7 @@ RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
 
       it "returns nil" do
         expect(
-          described_class.cast(method_params)
+          described_class.dispatch(method_params)
         ).to be_nil
       end
     end
