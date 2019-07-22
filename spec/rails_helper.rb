@@ -12,6 +12,9 @@ RSpec.configure do |config|
   # Mix custom helpers in to tests.
   config.include Helpers::SmsCampaignPayload
 
+  # Set ActiveJob adapter to test.
+  ActiveJob::Base.queue_adapter = :test
+
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.

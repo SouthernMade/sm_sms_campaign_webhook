@@ -3,6 +3,15 @@ require "securerandom"
 module Helpers
   # Helpers to provide sample SMS campaign payloads.
   module SmsCampaignPayload
+    # @return [Hash] Random SMS campaign payload deserialized from JSON
+    def random_sms_campaign_payload
+      payload = %w[
+        unsupported_event_hash
+        campaign_engagement_hash
+      ].sample
+      send(payload)
+    end
+
     # @return [String] Unsupported payload as JSON
     def unsupported_event_json
       {
