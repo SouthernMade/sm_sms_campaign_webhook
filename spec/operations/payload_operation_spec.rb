@@ -26,10 +26,11 @@ RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
         campaign_engagement_hash
       end
 
-      it "returns payload modeled as campaign engagement" do
+      it "schedules job to process campaign engagement payload" do
         expect(
-          described_class.dispatch(method_params)
-        ).to be_a(SmSmsCampaignWebhook::CampaignEngagement)
+          SmSmsCampaignWebhook::ProcessCampaignEngagementJob
+        ).to receive(:perform_later).with(payload)
+        described_class.dispatch(method_params)
       end
     end
 
@@ -38,20 +39,20 @@ RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
         unsupported_event_hash
       end
 
-      it "returns nil" do
-        expect(
+      it "does not schedule any processing job" do
+        expect do
           described_class.dispatch(method_params)
-        ).to be_nil
+        end.to_not have_enqueued_job
       end
     end
 
     context "when payload does not specify type" do
       let(:payload) { Hash.new }
 
-      it "returns nil" do
-        expect(
+      it "does not schedule any processing job" do
+        expect do
           described_class.dispatch(method_params)
-        ).to be_nil
+        end.to_not have_enqueued_job
       end
     end
   end

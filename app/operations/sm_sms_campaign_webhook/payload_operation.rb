@@ -4,12 +4,11 @@ module SmSmsCampaignWebhook
   # Handles payload data modeling and data processing.
   class PayloadOperation
     # @param payload [Hash] Deserialized payload from SMS campaign service
-    # @return [CampaignEngagement,NilClass] modeled payload for supported types
-    # @see CampaignEngagement
+    # @see ProcessCampaignEngagementJob#perform
     def self.dispatch(payload:)
       case payload.fetch("type", "unknown")
       when "campaign.engagement"
-        CampaignEngagement.new(payload: payload)
+        ProcessCampaignEngagementJob.perform_later(payload)
       else
         # NOOP - Unsupported event type.
       end
