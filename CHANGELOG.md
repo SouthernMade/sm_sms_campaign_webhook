@@ -7,11 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Mountable Rails engine as API
-- POST /api/webhook resource requiring JSON payload handing of data modeling
+- POST /api/webhook resource requiring JSON payload for asynchronous dispatching and processing
 - Support for Rails 5.2.x, 6.0.x
 - Data models for campaign engagement event payloads
 - Helper method to get specific campaign engagement answer
-- Payload operation library to cast deserialized JSON with supported event data modeling
+- Payload operation library to dispatch and process deserialized JSON with supported event data modeling
+- ActiveJob library for asynchronous handling of payload dispatching and processing
 
 ### Changed
 - Require Ruby >= 2.5
