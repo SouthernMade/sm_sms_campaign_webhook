@@ -37,6 +37,20 @@ Or install it yourself as:
 
 Right now, nothing happens! Soon, some useful details will emerge about how to ingest the SMS campaign payloads.
 
+### Set Backend for ActiveJob
+
+Payloads will be dispatched and processed asynchronously using [ActiveJob](https://edgeguides.rubyonrails.org/active_job_basics.html). Southern Made prefers that the app be configured with [Sidekiq](https://github.com/mperham/sidekiq) as the queue adapter.
+
+You can set the adapter in `config/application.rb` with:
+
+```ruby
+class Application < Rails::Application
+  config.active_job.queue_adapter = :sidekiq
+end
+```
+
+More detailed instructions about using Sidekiq can be found in the [Sidekiq Wiki](https://github.com/mperham/sidekiq/wiki).
+
 ### Mount the Webhook Engine
 
 Add the following to `config/routes.rb` in your app to mount the webhook:
