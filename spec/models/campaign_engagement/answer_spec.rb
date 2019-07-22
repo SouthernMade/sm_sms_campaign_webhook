@@ -4,11 +4,11 @@ require_relative "../../support/helpers/sms_campaign_payload"
 RSpec.describe SmSmsCampaignWebhook::CampaignEngagement::Answer, type: :model do
   include Helpers::SmsCampaignPayload
 
-  describe ".serialize" do
+  describe ".cast" do
     context "when :data param is not present" do
       it "raises an error" do
         expect do
-          described_class.serialize
+          described_class.cast
         end.to raise_error(ArgumentError)
       end
     end
@@ -18,7 +18,7 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement::Answer, type: :model do
 
       it "returns an empty array" do
         expect(
-          described_class.serialize(data: data)
+          described_class.cast(data: data)
         ).to eq([])
       end
     end
@@ -32,8 +32,8 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement::Answer, type: :model do
         )
       end
 
-      it "returns array with serialized answer" do
-        result = described_class.serialize(data: data)
+      it "returns array with modeled answer" do
+        result = described_class.cast(data: data)
         expect(result).to be_a(Array)
         expect(result.length).to eq(1)
         expect(result[0]).to be_a(described_class)
@@ -49,8 +49,8 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement::Answer, type: :model do
         )
       end
 
-      it "returns array with serialized answers sorted by collected_at" do
-        result = described_class.serialize(data: data)
+      it "returns array with modeled answers sorted by collected_at" do
+        result = described_class.cast(data: data)
         expect(result).to be_a(Array)
         expect(result.length).to eq(3)
         expect(result[0]).to be_a(described_class)
@@ -195,7 +195,7 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement::Answer, type: :model do
         answer_hash["value"] = "2000-07-04"
       end
 
-      it "returns serialized answer_hash value as date" do
+      it "returns coerced answer_hash value as date" do
         expected_result = Date.parse(answer_hash.fetch("value"))
         expect(subject.value).to eq(expected_result)
       end
@@ -293,7 +293,7 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement::Answer, type: :model do
       end
     end
 
-    it "returns serialized answer_hash collected_at" do
+    it "returns coerced answer_hash collected_at" do
       expected_result = DateTime.parse(answer_hash.fetch("collected_at"))
       expect(subject.collected_at).to eq(expected_result)
     end

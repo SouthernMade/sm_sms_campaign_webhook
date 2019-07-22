@@ -7,8 +7,8 @@ module SmSmsCampaignWebhook
     # Data model for campaign engagement answer data.
     class Answer
       # @param data [Hash] Answers from payload
-      # @return [Array<Answer>] Serialized answer data sorted by collected_at
-      def self.serialize(data:)
+      # @return [Array<Answer>] Modeled answer data sorted by collected_at
+      def self.cast(data:)
         data.map do |field, answer_hash|
           new(field: field, answer_hash: answer_hash)
         end.sort_by(&:collected_at)
@@ -30,9 +30,9 @@ module SmSmsCampaignWebhook
       # string, email, date, number, boolean, us_state
       #
       # The possible types are from SMS campaign service perspective.
-      # They are serialized to the appropriate type in Ruby.
+      # They are coerced to the appropriate type in Ruby.
       #
-      # @return [String,Integer,Date,TrueClass,FalseClass] Serialized answer
+      # @return [String,Integer,Date,TrueClass,FalseClass] Coerced answer
       # @raise [InvalidPayload] when value is missing from answer_hash
       def value
         # Could be boolean so cannot rely on double pipe assignment guard.
