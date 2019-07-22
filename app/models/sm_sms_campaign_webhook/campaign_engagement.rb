@@ -17,8 +17,7 @@ module SmSmsCampaignWebhook
     def event_uuid
       @event_uuid ||= String(
         payload.fetch("uuid") do
-          raise InvalidPayload,
-                "uuid missing from payload #{payload.inspect}"
+          raise_invalid_payload_for("uuid")
         end.freeze
       )
     end
@@ -28,8 +27,7 @@ module SmSmsCampaignWebhook
     def event_type
       @event_type ||= String(
         payload.fetch("type") do
-          raise InvalidPayload,
-                "type missing from payload #{payload.inspect}"
+          raise_invalid_payload_for("type")
         end.freeze
       )
     end
@@ -40,8 +38,7 @@ module SmSmsCampaignWebhook
     def event_created_at
       @event_created_at ||= begin
         raw_created_at = payload.fetch("created_at") do
-          raise InvalidPayload,
-                "created_at missing from payload #{payload.inspect}"
+          raise_invalid_payload_for("created_at")
         end
         DateTime.parse(raw_created_at).freeze
       end
@@ -56,8 +53,7 @@ module SmSmsCampaignWebhook
     def campaign_id
       @campaign_id ||= Integer(
         campaign_hash.fetch("id") do
-          raise InvalidPayload,
-                "campaign id missing from payload #{payload.inspect}"
+          raise_invalid_payload_for("campaign id")
         end
       )
     rescue ArgumentError
@@ -70,8 +66,7 @@ module SmSmsCampaignWebhook
     def campaign_keyword
       @campaign_keyword ||= String(
         campaign_hash.fetch("keyword") do
-          raise InvalidPayload,
-                "campaign keyword missing from payload #{payload.inspect}"
+          raise_invalid_payload_for("campaign keyword")
         end.freeze
       )
     end
@@ -82,8 +77,7 @@ module SmSmsCampaignWebhook
     def phone_id
       @phone_id ||= Integer(
         phone_hash.fetch("id") do
-          raise InvalidPayload,
-                "phone id missing from payload #{payload.inspect}"
+          raise_invalid_payload_for("phone id")
         end
       )
     rescue ArgumentError
@@ -96,8 +90,7 @@ module SmSmsCampaignWebhook
     def phone_number
       @phone_number ||= String(
         phone_hash.fetch("number") do
-          raise InvalidPayload,
-                "phone number missing from payload #{payload.inspect}"
+          raise_invalid_payload_for("phone number")
         end.freeze
       )
     end
@@ -108,8 +101,7 @@ module SmSmsCampaignWebhook
     def phone_campaign_state_id
       @phone_campaign_state_id ||= Integer(
         phone_campaign_state_hash.fetch("id") do
-          raise InvalidPayload,
-                "phone_campaign_state id missing from payload #{payload.inspect}"
+          raise_invalid_payload_for("phone_campaign_state id")
         end
       )
     rescue ArgumentError
@@ -130,8 +122,7 @@ module SmSmsCampaignWebhook
       @phone_campaign_state_completed = begin
         completed = phone_campaign_state_hash
           .fetch("completed") do
-            raise InvalidPayload,
-                  "phone_campaign_state completed missing from payload #{payload.inspect}"
+            raise_invalid_payload_for("phone_campaign_state completed")
           end
 
         # Is this a boolean value?
@@ -150,8 +141,7 @@ module SmSmsCampaignWebhook
     def phone_campaign_state_completed_at
       @phone_campaign_state_completed_at ||= begin
         raw_completed_at = phone_campaign_state_hash.fetch("completed_at") do
-          raise InvalidPayload,
-                "phone_campaign_state completed_at missing from payload #{payload.inspect}"
+          raise_invalid_payload_for("phone_campaign_state completed_at")
         end
         DateTime.parse(raw_completed_at).freeze if raw_completed_at
       end
@@ -167,8 +157,7 @@ module SmSmsCampaignWebhook
       @phone_campaign_state_answers ||= begin
         # Extract answers data from payload.
         data = phone_campaign_state_hash.fetch("answers") do
-          raise InvalidPayload,
-            "phone_campaign_state answers missing from payload #{payload.inspect}"
+          raise_invalid_payload_for("phone_campaign_state answers")
         end
         
         # Is this hash data?
@@ -191,6 +180,11 @@ module SmSmsCampaignWebhook
     end
 
     private
+
+    # @param attr [String] Expected attribute missing from payload
+    def raise_invalid_payload_for(attr)
+      raise InvalidPayload, "#{attr} missing from payload #{payload.inspect}"
+    end
 
     # @return [Hash] Data from campaign engagement payload
     def payload_data
