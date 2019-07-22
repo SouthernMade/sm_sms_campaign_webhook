@@ -34,11 +34,11 @@ RSpec.describe "API webhook", type: :request do
       unsupported_event_json
     end
 
-    it "models the payload" do
+    it "schedules job to dispatch the payload" do
       payload_hash = JSON.parse(payload)
       expect(
-        SmSmsCampaignWebhook::PayloadOperation
-      ).to receive(:cast).with(payload: payload_hash)
+        SmSmsCampaignWebhook::DispatchPayloadJob
+      ).to receive(:perform_later).with(payload_hash)
       post "/sms_campaign/api/webhook", headers: headers, params: payload
     end
 
@@ -53,11 +53,11 @@ RSpec.describe "API webhook", type: :request do
       campaign_engagement_json
     end
 
-    it "models the payload" do
+    it "schedules job to dispatch the payload" do
       payload_hash = JSON.parse(payload)
       expect(
-        SmSmsCampaignWebhook::PayloadOperation
-      ).to receive(:cast).with(payload: payload_hash)
+        SmSmsCampaignWebhook::DispatchPayloadJob
+      ).to receive(:perform_later).with(payload_hash)
       post "/sms_campaign/api/webhook", headers: headers, params: payload
     end
 
