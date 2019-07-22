@@ -1,8 +1,4 @@
-require_relative "../support/helpers/sms_campaign_payload"
-
 RSpec.describe "API webhook", type: :request do
-  include Helpers::SmsCampaignPayload
-
   let(:headers) do
     {
       "Content-Type" => "application/json",

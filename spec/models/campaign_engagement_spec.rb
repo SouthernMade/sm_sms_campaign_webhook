@@ -1,9 +1,6 @@
 require "date"
-require_relative "../support/helpers/sms_campaign_payload"
 
 RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
-  include Helpers::SmsCampaignPayload
-
   let(:payload) do
     campaign_engagement_hash
   end

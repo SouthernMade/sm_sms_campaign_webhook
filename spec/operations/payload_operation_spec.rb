@@ -1,8 +1,4 @@
-require_relative "../support/helpers/sms_campaign_payload"
-
 RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
-  include Helpers::SmsCampaignPayload
-
   describe ".cast" do
     let(:method_params) do
       {
