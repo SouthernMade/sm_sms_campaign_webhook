@@ -49,6 +49,12 @@ class Application < Rails::Application
 end
 ```
 
+Update your Procfile or appropriate config to launch worker processes:
+
+```
+worker: RAILS_MAX_THREADS=${SIDEKIQ_CONCURRENCY:-5} bundle exec sidekiq --config config/sidekiq.yml
+```
+
 More detailed instructions about using Sidekiq can be found in the [Sidekiq Wiki](https://github.com/mperham/sidekiq/wiki).
 
 ### Mount the Webhook Engine
