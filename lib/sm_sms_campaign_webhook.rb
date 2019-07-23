@@ -10,6 +10,15 @@ module SmSmsCampaignWebhook
     yield self if block
   end
 
+  # @return [String] SMS campaign webhook auth token
+  # @raise [MissingConfigError] when ENV does not contain SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN value
+  def self.auth_token
+    @auth_token ||= ENV.fetch("SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN") do
+      raise MissingConfigError,
+            "ENV does not contain SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN value"
+    end
+  end
+
   # @return [Processable] SMS campaign payload processor used by operations
   def self.processor
     @processor ||= DefaultProcessor
