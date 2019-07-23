@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Helper method to get specific campaign engagement answer
 - Payload operation library to dispatch and process deserialized JSON with supported event data modeling
 - Processable behavior definition for app implementors
-- Default processor with NOOP data processing
+- Default processor mixing in processable behavior with noisy errors
 - ActiveJob library for asynchronous handling of payload dispatching and processing
 
 ### Changed

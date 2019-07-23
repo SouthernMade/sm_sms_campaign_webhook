@@ -13,10 +13,10 @@ RSpec.shared_examples "implementation of processable" do
       end.to raise_error(ArgumentError)
     end
 
-    it "does not raise an error" do
+    it "raises a not implemented error" do
       expect do
         described_class.process_campaign_engagement(campaign_engagement)
-      end.to_not raise_error
+      end.to raise_error(NotImplementedError)
     end
   end
 end
