@@ -3,9 +3,12 @@
 module SmSmsCampaignWebhook
   # Handles campaign engagement payload data modeling and processing.
   class CampaignEngagementOperation
+    # Models the campaign engagement payload and hands of processing
+    # of the data to the processor.
+    #
     # @param payload [Hash] Deserialized SMS campaign engagement payload
-    # @return [CampaignEngagement] modeled payload
     # @raise [PayloadDispatchError] when not campaign engagement payload
+    # @see .processor
     def self.process(payload:)
       logger.debug "#{name} - Processing campaign engagement payload: #{payload.inspect}"
 
@@ -14,7 +17,8 @@ module SmSmsCampaignWebhook
               "dispatched payload different from campaign.engagement #{payload.inspect}"
       end
 
-      CampaignEngagement.new(payload: payload)
+      campaign_enagement = CampaignEngagement.new(payload: payload)
+      processor.process_campaign_engagement(campaign_enagement)
     end
 
     # @return [Processable] SMS campaign payload processor
