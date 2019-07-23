@@ -17,6 +17,12 @@ module SmSmsCampaignWebhook
       CampaignEngagement.new(payload: payload)
     end
 
+    # @return [Processable] SMS campaign payload processor
+    # @see [Processable]
+    def self.processor
+      @processor ||= DefaultProcessor
+    end
+
     # @return [ActiveSupport::Logger] Abstraction of app logger
     def self.logger
       @logger ||= Rails.logger
