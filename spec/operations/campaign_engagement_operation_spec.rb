@@ -33,10 +33,18 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagementOperation do
       end
     end
 
-    it "returns payload modeled as campaign engagement" do
-      expect(
-        described_class.process(method_params)
-      ).to be_a(SmSmsCampaignWebhook::CampaignEngagement)
+    it "processes payload modeled as campaign engagement" do
+      expect(described_class.processor).to receive(:process_campaign_engagement)
+        .with(an_instance_of(SmSmsCampaignWebhook::CampaignEngagement))
+      described_class.process(method_params)
+    end
+  end
+
+  describe ".processor" do
+    it "returns default processor" do
+      expect(described_class.processor).to eq(
+        SmSmsCampaignWebhook::DefaultProcessor
+      )
     end
   end
 end
