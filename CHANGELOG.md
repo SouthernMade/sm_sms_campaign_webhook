@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Mountable Rails engine as API
 - POST /api/webhook resource requiring JSON payload for asynchronous dispatching and processing
+- Require inbound POST requests be authorization requests with an auth token
 - Support for Rails 5.2.x, 6.0.x
 - Data models for campaign engagement event payloads
 - Helper method to get specific campaign engagement answer
