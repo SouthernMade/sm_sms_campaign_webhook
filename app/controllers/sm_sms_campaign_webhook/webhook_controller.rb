@@ -6,14 +6,14 @@ module SmSmsCampaignWebhook
   # API webhook for POST requests from SMS campaign service.
   class WebhookController < ApplicationController
     # POST /api/webhook
-    # @see PayloadOperation.cast
+    # @see DispatchPayloadJob#perform
     def create
       # Deserialize the payload.
       payload = JSON.parse(request.body.read)
       logger.debug "#{self.class} - Payload: #{payload.inspect}"
 
-      # Cast the payload data with the appropriate data model.
-      PayloadOperation.cast(payload: payload)
+      # Dispatch the payload to the appropriate payload processor.
+      DispatchPayloadJob.perform_later(payload)
 
       head :no_content
     rescue JSON::ParserError => e

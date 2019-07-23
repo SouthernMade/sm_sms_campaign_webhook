@@ -1,9 +1,6 @@
 require "date"
-require_relative "../../support/helpers/sms_campaign_payload"
 
 RSpec.describe SmSmsCampaignWebhook::CampaignEngagement::Answer, type: :model do
-  include Helpers::SmsCampaignPayload
-
   describe ".cast" do
     context "when :data param is not present" do
       it "raises an error" do
