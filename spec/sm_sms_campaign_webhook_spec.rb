@@ -1,5 +1,7 @@
 RSpec.describe SmSmsCampaignWebhook do
-  it "has a version number" do
-    expect(SmSmsCampaignWebhook::VERSION).not_to be nil
+  describe "VERSION" do
+    it "has a version number" do
+      expect(described_class::VERSION).to_not be_nil
+    end
   end
 end
