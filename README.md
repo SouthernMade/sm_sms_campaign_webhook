@@ -96,6 +96,11 @@ class SmsPayloadProcessor
   include SmSmsCampaignWebhook::Processable
 
   # Implement required methods for Processable behavior.
+
+  # @param campaign_engagement [SmSmsCampaignWebhook::CampaignEngagement]
+  # def self.process_campaign_engagement(campaign_engagement)
+  #   # NOOP - I need to be implemented.
+  # end
 end
 ```
 
