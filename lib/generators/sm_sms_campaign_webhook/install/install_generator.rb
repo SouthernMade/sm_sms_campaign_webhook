@@ -18,6 +18,11 @@ module SmSmsCampaignWebhook
       def copy_processor
         template "sms_payload_processor.rb.erb", "app/processors/sms_payload_processor.rb"
       end
+
+      # Dump the README for the app developer
+      def show_readme
+        readme "README" if behavior == :invoke
+      end
     end
   end
 end
