@@ -37,13 +37,25 @@ Or install it yourself as:
 
 These are the steps to configure your app to be ready to capture SMS campaign service payloads.
 
+### Auto Generate Config
+
+You can setup most app configuration by running the generator:
+
+```
+$ bundle exec rails generate sm_sms_campaign_webhook:install
+```
+
+Some things will still require manual configuration and will be identified after generation.
+
+If you prefer to setup everything by hand, continue to the next sections!
+
 ### Set SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN value in ENV
 
 The value is required to be an ENV value so that we avoid leaking production auth token values. It will be used to authorize payload requests from the SMS campaign service.
 
 Set this value using the rails secret generator:
 
-```ruby
+```
 $ bundle exec rails secret
 ```
 
