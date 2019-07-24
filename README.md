@@ -71,6 +71,51 @@ This sets the app up to receive POST requests from the SMS campaign service:
 
 Be sure to replace `/sms_campaign` with whatever mount point you choose. Once you share the webhook URI with your project manager, avoid changing it; they will configure it with the correspending SMS campaign!
 
+### Configure Webhook Options
+
+App implementors must configure some library options. Here are all supported configuration options with their default values for `config/initializers/sm_sms_campaign_webhook.rb`:
+
+```ruby
+require "sm_sms_campaign_webhook"
+
+SmSmsCampaignWebhook.config do |config|
+  # SMS campaign payload processor implementing SmSmsCampaignWebhook::Processable behavior.
+  # default: SmSmsCampaignWebhook::DefaultProcessor (raises errors for processing)
+  # config.processor = SmsPayloadProcessor
+end
+```
+
+#### Payload Processor
+
+The default payload processor will raise errors while processing. You are required to provide a working payload processor to properly handle the data received from the SMS campaign service.
+
+To create a processor, create a custom class mixing in `SmSmsCampaignWebhook::Processable` behavior. For example, we can create a custom processor named `SmsPayloadProcessor`:
+
+```ruby
+class SmsPayloadProcessor
+  include SmSmsCampaignWebhook::Processable
+
+  # Implement required methods for Processable behavior.
+
+  # @param campaign_engagement [SmSmsCampaignWebhook::CampaignEngagement]
+  # def self.process_campaign_engagement(campaign_engagement)
+  #   # NOOP - I need to be implemented.
+  # end
+end
+```
+
+This class will continue raising errors until the required methods are implemented. Please see the [Processable mixin](https://github.com/SouthernMade/sm_sms_campaign_webhook/blob/develop/app/processors/sm_sms_campaign_webhook/processable.rb) for expected method definitions.
+
+Finally the configuration needs to be updated to use the custom processor. Add this within the config block in `config/initializers/sm_sms_campaign_webhook.rb`:
+
+```ruby
+SmSmsCampaignWebhook.config do |config|
+  #...
+  config.processor = SmsPayloadProcessor
+  #...
+end
+```
+
 ## Development
 
 This gem uses [git-flow](https://github.com/nvie/gitflow) to manage deployments. The default branches are used to manage development and production code.

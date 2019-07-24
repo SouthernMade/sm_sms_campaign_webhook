@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Processable behavior definition for app implementors
 - Default processor mixing in processable behavior with noisy errors
 - ActiveJob library for asynchronous handling of payload dispatching and processing
+- Configuration support for required app implementation values
 
 ### Changed
 - Require Ruby >= 2.5

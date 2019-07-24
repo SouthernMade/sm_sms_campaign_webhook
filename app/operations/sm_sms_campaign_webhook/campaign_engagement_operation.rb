@@ -21,10 +21,10 @@ module SmSmsCampaignWebhook
       processor.process_campaign_engagement(campaign_enagement)
     end
 
-    # @return [Processable] SMS campaign payload processor
-    # @see [Processable]
+    # @return [Processable] Configured SMS campaign payload processor
+    # @see SmSmsCampaignWebhook.processor
     def self.processor
-      @processor ||= DefaultProcessor
+      @processor ||= SmSmsCampaignWebhook.processor
     end
 
     # @return [ActiveSupport::Logger] Abstraction of app logger

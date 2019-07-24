@@ -41,9 +41,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagementOperation do
   end
 
   describe ".processor" do
-    it "returns default processor" do
+    it "returns configured processor" do
       expect(described_class.processor).to eq(
-        SmSmsCampaignWebhook::DefaultProcessor
+        SmSmsCampaignWebhook.processor
       )
     end
   end
