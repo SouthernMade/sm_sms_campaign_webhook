@@ -35,7 +35,23 @@ Or install it yourself as:
 
 ## Usage
 
-Right now, nothing happens! Soon, some useful details will emerge about how to ingest the SMS campaign payloads.
+These are the steps to configure your app to be ready to capture SMS campaign service payloads.
+
+### Set SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN value in ENV
+
+The value is required to be an ENV value so that we avoid leaking production auth token values. It will be used to authorize payload requests from the SMS campaign service.
+
+Set this value using the rails secret generator:
+
+```ruby
+$ bundle exec rails secret
+```
+
+And copy the result to your `.env` or applicable config file:
+
+```
+SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN="******"
+```
 
 ### Set Backend for ActiveJob
 

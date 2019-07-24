@@ -9,6 +9,9 @@ require "rspec/rails"
 # Require spec/support files
 Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
 
+# Set expected lib related values.
+ENV["SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN"] = SecureRandom.hex(64)
+
 RSpec.configure do |config|
   # Mix custom helpers in to tests.
   config.include Helpers::SmsCampaignPayload

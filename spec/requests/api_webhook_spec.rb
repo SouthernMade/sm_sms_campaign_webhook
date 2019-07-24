@@ -1,10 +1,14 @@
+require "securerandom"
+
 RSpec.describe "API webhook", type: :request do
   let(:headers) do
     {
       "Content-Type" => "application/json",
-      "Accept" => "application/json"
+      "Accept" => "application/json",
+      "Authorization" => "Bearer #{auth_token}"
     }
   end
+  let(:auth_token) { SmSmsCampaignWebhook.auth_token }
 
   context "without any payload" do
     it "responds with bad request" do
@@ -16,7 +20,8 @@ RSpec.describe "API webhook", type: :request do
   context "without json payload" do
     let(:headers) do
       {
-        "Accept" => "*/*"
+        "Accept" => "*/*",
+        "Authorization" => "Bearer #{auth_token}"
       }
     end
     let(:payload) do
@@ -26,6 +31,33 @@ RSpec.describe "API webhook", type: :request do
     it "responds with bad request" do
       post "/sms_campaign/api/webhook", headers: headers, params: payload
       expect(response).to have_http_status(:bad_request)
+    end
+  end
+
+  context "without authorization header" do
+    let(:payload) do
+      campaign_engagement_json
+    end
+
+    before do
+      headers.delete("Authorization")
+    end
+
+    it "responds with unauthorized" do
+      post "/sms_campaign/api/webhook", headers: headers, params: payload
+      expect(response).to have_http_status(:unauthorized)
+    end
+  end
+
+  context "with incorrect authorization" do
+    let(:auth_token) { SecureRandom.hex(64) }
+    let(:payload) do
+      campaign_engagement_json
+    end
+
+    it "responds with unauthorized" do
+      post "/sms_campaign/api/webhook", headers: headers, params: payload
+      expect(response).to have_http_status(:unauthorized)
     end
   end
 
