@@ -1,0 +1,13 @@
+# frozen_string_literal: true
+
+# Processes SMS campaign service payloads.
+# @see https://github.com/SouthernMade/sm_sms_campaign_webhook/blob/v<%= SmSmsCampaignWebhook::VERSION %>/app/processors/sm_sms_campaign_webhook/processable.rb SmSmsCampaignWebhook::Processable
+class SmsPayloadProcessor
+  include SmSmsCampaignWebhook::Processable
+
+  # @param campaign_enagement [SmSmsCampaignWebhook::CampaignEngagement]
+  # @see https://github.com/SouthernMade/sm_sms_campaign_webhook/blob/v<%= SmSmsCampaignWebhook::VERSION %>/app/models/sm_sms_campaign_webhook/campaign_engagement.rb SmSmsCampaignWebhook::CampaignEngagement
+  # @todo Implement business logic to process campaign engagement.
+  # def self.process_campaign_engagement(campaign_engagement)
+  # end
+end

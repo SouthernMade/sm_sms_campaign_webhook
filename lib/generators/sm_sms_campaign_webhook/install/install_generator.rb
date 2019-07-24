@@ -13,6 +13,11 @@ module SmSmsCampaignWebhook
       def copy_initializer
         template "sm_sms_campaign_webhook.rb", "config/initializers/sm_sms_campaign_webhook.rb"
       end
+
+      # Copy processor template to app/processors
+      def copy_processor
+        template "sms_payload_processor.rb.erb", "app/processors/sms_payload_processor.rb"
+      end
     end
   end
 end

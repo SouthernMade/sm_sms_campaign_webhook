@@ -5,4 +5,5 @@ Example:
     rails generate sm_sms_campaign_webhook:install
 
     This will create:
+        app/processors/sms_payload_processor.rb
         config/initializers/sm_sms_campaign_webhook.rb
