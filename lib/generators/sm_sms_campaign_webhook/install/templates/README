@@ -6,12 +6,7 @@ Some setup you must do manually if you haven't yet:
 
        $ bundle exec rails secret
 
-  2. Mount the webhook engine in config/routes.rb to accept requests.
-     For example:
-
-       mount SmSmsCampaignWebhook::Engine => "/sms_campaign"
-
-  3. Prep the app for ActiveJob using Sidekiq. In config/application.rb:
+  2. Prep the app for ActiveJob using Sidekiq. In config/application.rb:
 
        config.active_job.queue_adapter = :sidekiq
 
@@ -19,7 +14,7 @@ Some setup you must do manually if you haven't yet:
 
        worker: bundle exec sidekiq --config config/sidekiq.yml
 
-  4. Implement SmsPayloadProcessor behavior. Remember, the generated processor
+  3. Implement SmsPayloadProcessor behavior. Remember, the generated processor
      provides the skeleton but will raise errors out of the box. Data handling
      is app specific!
 

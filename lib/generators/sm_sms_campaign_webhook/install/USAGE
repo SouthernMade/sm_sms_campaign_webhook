@@ -7,3 +7,6 @@ Example:
     This will create:
         app/processors/sms_payload_processor.rb
         config/initializers/sm_sms_campaign_webhook.rb
+
+    This will mount the engine in:
+        config/routes.rb
