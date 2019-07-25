@@ -73,7 +73,7 @@ If you prefer to setup everything by hand, continue to the next sections!
 
 ### Webhook Auth Token
 
-The SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN value is required to be an ENV value to avoid leaking production values. It will be used to authorize payload requests from the SMS campaign service.
+The `SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN` value is required to be an `ENV` value to avoid leaking production values. It will be used to authorize payload requests from the SMS campaign service.
 
 Set this value using the rails secret generator:
 
@@ -204,7 +204,7 @@ def self.process_campaign_engagement(campaign_engagement)
 end
 ```
 
-It will receive an instance of the `SmSmsCampaignWebhook::CampaignEngagement` data model. This method will need to handle scenarios such as:
+It will receive an instance of the [SmSmsCampaignWebhook::CampaignEngagement](https://github.com/SouthernMade/sm_sms_campaign_webhook/blob/develop/app/models/sm_sms_campaign_webhook/campaign_engagement.rb) data model. This method will need to handle scenarios such as:
 
 - Registering/creating a user account
 - Logging registration/entries
@@ -258,12 +258,12 @@ The [SmSmsCampaignWebhook::CampaignEngagement::Answer](https://github.com/Southe
 
 The value data types could be one of the following:
 
-- string (modeled as `String`)
-- email (modeled as `String`)
-- date (modeled as `Date`)
-- number (modeled as `Integer`)
-- boolean (modeled as `TrueClass`, `FalseClass`)
-- us_state (modeled as `String`)
+- string (`String`)
+- email (`String`)
+- date (`Date`)
+- number (`Integer`)
+- boolean (`TrueClass`, `FalseClass`)
+- us_state (`String`)
 
 ## Development
 
