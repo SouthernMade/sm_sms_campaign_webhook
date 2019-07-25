@@ -25,6 +25,8 @@ Work closely with your Southern Made project manager to gather details about wha
   - [Mount the Webhook Engine](#mount-the-webhook-engine)
   - [Webhook Initializer](#webhook-initializer)
   - [Payload Processor](#payload-processor)
+- [Usage](#usage)
+  - [Campaign Engagement](#campaign-engagement)
 - [Development](#development)
   - [Versioning](#versioning)
   - [Testing](#testing)
@@ -166,6 +168,28 @@ SmSmsCampaignWebhook.config do |config|
   #...
 end
 ```
+
+## Usage
+
+The main goal is to ingest the data contained in payloads received from the SMS campaign service. Your app knows best what to do with the data, so your primary focus is implementing the required methods of a payload processor.
+
+Assuming that you completed configuration with the [auto generate installer](#auto-generate-config) or [manually created a processor](#payload-processor), this section will expand what to do with it.
+
+### Campaign Engagement
+
+This payload represents a user's phone interaction with the SMS campaign. This includes:
+
+- First contact with a SMS campaign by keyword
+- Responding to subsequent SMS campaign messages
+- Continued engagement for multi-entry SMS campaigns
+
+Payloads will POST to the webhook every time a phone interacts with the campaign, so the processor behavior should expect to see repeats of inbound payloads from a phone!
+
+It is important that you work closely with your Southern Made project manager to determine which scenarios are relevant for your app. They will be able to tell you:
+
+- Fields + value types that will be in answers
+- Required fields to complete registration/entry
+- How to interpret voting style numeric answers
 
 ## Development
 
