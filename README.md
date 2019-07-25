@@ -1,6 +1,6 @@
 # SmSmsCampaignWebhook
 
-![Southern Made - Galaxy](https://raw.github.com/SouthernMade/sm_sms_campaign_webhook/develop/logo_galaxymark.png) by [Southern Made](https://www.southernmade.com/).
+![Southern Made - Galaxy Logo](https://raw.github.com/SouthernMade/sm_sms_campaign_webhook/develop/logo_galaxymark.png) by [Southern Made](https://www.southernmade.com/).
 
 [![Gem Version](https://badge.fury.io/rb/sm_sms_campaign_webhook.svg)](https://badge.fury.io/rb/sm_sms_campaign_webhook)
 [![Travis Build Status](https://travis-ci.org/SouthernMade/sm_sms_campaign_webhook.svg?branch=develop)](https://travis-ci.org/SouthernMade/sm_sms_campaign_webhook)
