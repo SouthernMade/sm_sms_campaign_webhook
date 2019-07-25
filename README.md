@@ -27,6 +27,9 @@ Work closely with your Southern Made project manager to gather details about wha
   - [Payload Processor](#payload-processor)
 - [Usage](#usage)
   - [Campaign Engagement](#campaign-engagement)
+    - [Processor Expections](#processor-expections)
+    - [Campaign Engagement Data Model](#campaign-engagement-data-model)
+    - [Campaign Engagement Answer Data Model](#campaign-engagement-answer-data-model)
 - [Development](#development)
   - [Versioning](#versioning)
   - [Testing](#testing)
@@ -190,6 +193,74 @@ It is important that you work closely with your Southern Made project manager to
 - Fields + value types that will be in answers
 - Required fields to complete registration/entry
 - How to interpret voting style numeric answers
+
+#### Processor Expections
+
+You must behavior for this method to ingest campaign engagement data in your paylod processor:
+
+```ruby
+def self.process_campaign_engagement(campaign_engagement)
+  # ...
+end
+```
+
+It will receive an instance of the `SmSmsCampaignWebhook::CampaignEngagement` data model. This method will need to handle scenarios such as:
+
+- Registering/creating a user account
+- Logging registration/entries
+- Interpreting + logging vote responses
+
+Check with your Southern Made project manager for expectations.
+
+#### Campaign Engagement Data Model
+
+The payload will be modeled with the [SmSmsCampaignWebhook::CampaignEngagement](https://github.com/SouthernMade/sm_sms_campaign_webhook/blob/develop/app/models/sm_sms_campaign_webhook/campaign_engagement.rb) class. It provides basic methods to extract values out of the payload. The data model coerces values to the appropriate types in Ruby.
+
+Some example message passing to an instance:
+
+```ruby
+campaign_engagement.event_uuid        # UUID - unique payload event
+campaign_engagement.campaign_keyword  # String - SMS campaign entry point
+campaign_engagement.phone_id          # Integer - represents specific phone
+campaign_engagement.phone_number      # String - phone number interacting with SMS campaign
+
+# This represents a specific phone engaging with a specific campaign.
+# The value will differ for each entry in multi-entry campaigns.
+# For standard campaigns we will only see one value.
+campaign_engagement.phone_campaign_state_id   # Integer
+
+# These values help determine if and when answers were received
+# for all campaign messages.
+campaign_engagement.phone_campaign_state_completed?     # TrueClass,FalseClass
+campaign_engagement.phone_campaign_state_completed_at   # DateTime
+```
+
+It also provides a useful helper method `#answer_for` to get a specific field answer from the payload. For example:
+
+```ruby
+# This tries to find an answer for the requested field.
+# If a match is found it returns instance of
+# SmSmsCampaignWebhook::CampaignEngagement::Answer data model.
+# If a match is not found it return nil (NilClass).
+campaign_enagement.answer_for(field: "email")   # Returned type answer specific
+```
+
+#### Campaign Engagement Answer Data Model
+
+The [SmSmsCampaignWebhook::CampaignEngagement::Answer](https://github.com/SouthernMade/sm_sms_campaign_webhook/blob/develop/app/models/sm_sms_campaign_webhook/campaign_engagement/answer.rb) class models the answer data contained in the campaign engagement payload. It consists of:
+
+- field (`String`)
+- value (varies)
+- collected_at (`DateTime`)
+
+The value data types could be one of the following:
+
+- string (modeled as `String`)
+- email (modeled as `String`)
+- date (modeled as `Date`)
+- number (modeled as `Integer`)
+- boolean (modeled as `TrueClass`, `FalseClass`)
+- us_state (modeled as `String`)
 
 ## Development
 
