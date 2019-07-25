@@ -3,19 +3,19 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "sm_sms_campaign_webhook/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "sm_sms_campaign_webhook"
-  spec.version       = SmSmsCampaignWebhook::VERSION
-  spec.authors       = ["Cameron Dykes", "Matt Mueller"]
-  spec.email         = ["cameron@southernmade.com", "matt@southernmade.com"]
-
-  spec.summary       = %q{Middleware providing webhook for Southern Made SMS Campaign Engagement.}
-  spec.homepage      = "https://github.com/SouthernMade/sm_sms_campaign_webhook"
-  spec.license       = "MIT"
+  spec.name        = "sm_sms_campaign_webhook"
+  spec.version     = SmSmsCampaignWebhook::VERSION
+  spec.license     = "MIT"
+  spec.summary     = %q{Middleware providing webhook for Southern Made SMS Campaign Engagement.}
+  spec.description = %q{Middleware providing webhook for Southern Made SMS Campaign Engagement.}
+  spec.homepage    = "https://github.com/SouthernMade/sm_sms_campaign_webhook"
+  spec.authors     = ["Cameron Dykes", "Matt Mueller"]
+  spec.email       = ["cameron@southernmade.com", "matt@southernmade.com"]
 
   spec.metadata["allowed_push_host"] = "https://rubygems.org"
-  spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/SouthernMade/sm_sms_campaign_webhook"
-  spec.metadata["changelog_uri"] = "https://github.com/SouthernMade/sm_sms_campaign_webhook/blob/develop/CHANGELOG.md"
+  spec.metadata["homepage_uri"]      = spec.homepage
+  spec.metadata["source_code_uri"]   = spec.homepage
+  spec.metadata["changelog_uri"]     = "#{spec.homepage}/blob/develop/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   spec.files = Dir[
