@@ -1,4 +1,6 @@
-# SmSmsCampaignWebhook: Middleware providing webhook for Southern Made SMS Campaign Engagement
+# SmSmsCampaignWebhook
+
+By [Southern Made](https://www.southernmade.com/).
 
 [![Gem Version](https://badge.fury.io/rb/sm_sms_campaign_webhook.svg)](https://badge.fury.io/rb/sm_sms_campaign_webhook)
 [![Travis Build Status](https://travis-ci.org/SouthernMade/sm_sms_campaign_webhook.svg?branch=develop)](https://travis-ci.org/SouthernMade/sm_sms_campaign_webhook)
