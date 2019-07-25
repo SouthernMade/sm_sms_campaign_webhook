@@ -15,6 +15,23 @@ This gem will help app implementors using [Rails](https://rubyonrails.org) setup
 
 Work closely with your Southern Made project manager to gather details about what needs to be tracked, what fields to verify, and which scenarios are expected to be supported!
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Configuration](#configuration)
+  - [Auto Generate Config](#auto-generate-config)
+  - [Webhook Auth Token](#webhook-auth-token)
+  - [ActiveJob](#activejob)
+  - [Mount the Webhook Engine](#mount-the-webhook-engine)
+  - [Webhook Initializer](#webhook-initializer)
+  - [Payload Processor](#payload-processor)
+- [Development](#development)
+  - [Versioning](#versioning)
+  - [Testing](#testing)
+  - [Documentation](#documentation)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Installation
 
 This gem is tested with Rails 5.2.x, 6.0.x versions.
@@ -117,7 +134,7 @@ SmSmsCampaignWebhook.config do |config|
 end
 ```
 
-#### Payload Processor
+### Payload Processor
 
 If you opted to [auto generate the config](#auto-generate-config), this can be skipped. However, you will still need to implement the processor methods!
 
@@ -157,7 +174,6 @@ This gem uses [git-flow](https://github.com/nvie/gitflow) to manage deployments.
 ### Versioning
 
 Gem versioning follows [Semantic Versioning](https://semver.org).
-
 
 ### Testing
 
