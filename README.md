@@ -33,7 +33,7 @@ Or install it yourself as:
 
     $ gem install sm_sms_campaign_webhook
 
-## Usage
+## Configuration
 
 These are the steps to configure your app to be ready to capture SMS campaign service payloads.
 
@@ -49,9 +49,9 @@ Some things will still require manual configuration and will be identified after
 
 If you prefer to setup everything by hand, continue to the next sections!
 
-### Set SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN value in ENV
+### Webhook Auth Token
 
-The value is required to be an ENV value so that we avoid leaking production auth token values. It will be used to authorize payload requests from the SMS campaign service.
+The SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN value is required to be an ENV value to avoid leaking production values. It will be used to authorize payload requests from the SMS campaign service.
 
 Set this value using the rails secret generator:
 
@@ -65,7 +65,7 @@ And copy the result to your `.env` or applicable config file:
 SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN="******"
 ```
 
-### Set Backend for ActiveJob
+### ActiveJob
 
 Payloads will be dispatched and processed asynchronously using [ActiveJob](https://edgeguides.rubyonrails.org/active_job_basics.html). Southern Made prefers that the app be configured with [Sidekiq](https://github.com/mperham/sidekiq) as the queue adapter.
 
@@ -87,6 +87,8 @@ More detailed instructions about using Sidekiq can be found in the [Sidekiq Wiki
 
 ### Mount the Webhook Engine
 
+If you opted to [auto generate the config](#auto-generate-config), this can be skipped.
+
 Add the following to `config/routes.rb` in your app to mount the webhook:
 
 ```ruby
@@ -99,9 +101,11 @@ This sets the app up to receive POST requests from the SMS campaign service:
 
 Be sure to replace `/sms_campaign` with whatever mount point you choose. Once you share the webhook URI with your project manager, avoid changing it; they will configure it with the correspending SMS campaign!
 
-### Configure Webhook Options
+### Webhook Initializer
 
-App implementors must configure some library options. Here are all supported configuration options with their default values for `config/initializers/sm_sms_campaign_webhook.rb`:
+If you opted to [auto generate the config](#auto-generate-config), this can be skipped.
+
+App implementors must configure some library options. Here are all supported configuration options identifying their default values for `config/initializers/sm_sms_campaign_webhook.rb`:
 
 ```ruby
 require "sm_sms_campaign_webhook"
@@ -114,6 +118,8 @@ end
 ```
 
 #### Payload Processor
+
+If you opted to [auto generate the config](#auto-generate-config), this can be skipped. However, you will still need to implement the processor methods!
 
 The default payload processor will raise errors while processing. You are required to provide a working payload processor to properly handle the data received from the SMS campaign service.
 
