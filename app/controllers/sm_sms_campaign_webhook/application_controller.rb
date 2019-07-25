@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "action_controller/metal/http_authentication"
+require "active_support/security_utils"
 
 module SmSmsCampaignWebhook
   # General webhook controller configuration.
