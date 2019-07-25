@@ -235,14 +235,17 @@ campaign_engagement.phone_campaign_state_completed?     # TrueClass,FalseClass
 campaign_engagement.phone_campaign_state_completed_at   # DateTime
 ```
 
-It also provides a useful helper method `#answer_for` to get a specific field answer from the payload. For example:
+It also provides a useful helper methods related to campaign engagement answers. For example:
 
 ```ruby
+# Are any campaign engagement answers in the payload?
+campaign_engagement.phone_campaign_state_answers? # TrueClass,FalseClass
+
 # This tries to find an answer for the requested field.
 # If a match is found it returns instance of
 # SmSmsCampaignWebhook::CampaignEngagement::Answer data model.
 # If a match is not found it return nil (NilClass).
-campaign_enagement.answer_for(field: "email")   # Returned type answer specific
+campaign_enagement.answer_for(field: "email")     # Returned type answer specific
 ```
 
 #### Campaign Engagement Answer Data Model
