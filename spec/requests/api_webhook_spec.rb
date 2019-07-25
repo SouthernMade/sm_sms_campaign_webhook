@@ -1,3 +1,4 @@
+require "json"
 require "securerandom"
 
 RSpec.describe "API webhook", type: :request do

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "json"
 require_dependency "sm_sms_campaign_webhook/application_controller"
 
 module SmSmsCampaignWebhook
