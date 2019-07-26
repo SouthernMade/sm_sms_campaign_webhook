@@ -15,6 +15,7 @@ Gem::Specification.new do |spec|
   spec.metadata = {
     "allowed_push_host" => "https://rubygems.org",
     "changelog_uri"     => "#{spec.homepage}/blob/develop/CHANGELOG.md",
+    "documentation_uri" => "https://www.rubydoc.info/gems/sm_sms_campaign_webhook/#{spec.version}",
     "homepage_uri"      => spec.homepage,
     "source_code_uri"   => spec.homepage
   }
