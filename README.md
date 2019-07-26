@@ -109,6 +109,18 @@ class Application < Rails::Application
 end
 ```
 
+Add `config/sidekiq.yml` config with:
+
+```yaml
+---
+---
+:concurrency: <%= ENV.fetch("SIDEKIQ_CONCURRENCY") { 5 }.to_i %>
+:timeout: <%= ENV.fetch("SIDEKIQ_TIMEOUT") { 25 }.to_i %>
+:queues:
+  - default
+  - mailers
+```
+
 Update your Procfile or appropriate config to launch worker processes:
 
 ```
