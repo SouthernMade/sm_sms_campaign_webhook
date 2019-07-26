@@ -3,7 +3,12 @@
 /_yardoc/
 /coverage/
 /doc/
+/log/*.log
 /pkg/
+/spec/rails_app/log/*.log
+/spec/rails_app/node_modules/
+/spec/rails_app/yarn-error.log
+/spec/rails_app/tmp/
 /spec/reports/
 /tmp/
 

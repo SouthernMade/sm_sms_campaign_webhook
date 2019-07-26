@@ -1,0 +1,25 @@
+================================================================================
+
+Some setup you must do manually if you haven't yet:
+
+  1. Set the ENV value SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN with a Rails secret:
+
+       $ bundle exec rails secret
+
+  2. Prep the app for ActiveJob using Sidekiq. In config/application.rb:
+
+       config.active_job.queue_adapter = :sidekiq
+
+     In Procfile or appropriate app launch config:
+
+       worker: bundle exec sidekiq --config config/sidekiq.yml
+
+  3. Implement SmsPayloadProcessor behavior. Remember, the generated processor
+     provides the skeleton but will raise errors out of the box. Data handling
+     is app specific!
+
+This will configure the app to be ready to accept SMS campaign service payloads.
+
+Happy hacking!
+
+================================================================================
