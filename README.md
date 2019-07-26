@@ -69,9 +69,17 @@ You can setup most app configuration by running the generator:
 $ bundle exec rails generate sm_sms_campaign_webhook:install
 ```
 
-Some things will still require manual configuration and will be identified after generation.
+Some things will still require manual configuration and will be identified after generation:
 
-If you prefer to setup everything by hand, continue to the next sections!
+- [Webhook Auth Token](#webhook-auth-token)
+- [ActiveJob](#activejob)
+
+After that, be sure to read the [Usage](#usage) section for payload processor details!
+
+If you prefer to setup everything by hand, be sure to check out:
+
+- [Webhook Initializer](#webhook-initializer)
+- [Payload Processor](#payload-processor)
 
 ### Webhook Auth Token
 
