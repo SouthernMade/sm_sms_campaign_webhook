@@ -46,7 +46,7 @@ This gem is tested with Rails 5.2.x, 6.0.x versions.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'sm_sms_campaign_webhook'
+gem 'sm_sms_campaign_webhook', '~> 1.0'
 ```
 
 And then execute:
