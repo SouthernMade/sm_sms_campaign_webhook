@@ -407,6 +407,24 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
     end
   end
 
+  describe "#phone_campaign_state_answers?" do
+    context "when phone_campaign_state answers are not present" do
+      before do
+        payload["data"]["phone_campaign_state"]["answers"] = {}
+      end
+
+      it "returns false" do
+        expect(subject.phone_campaign_state_answers?).to eq(false)
+      end
+    end
+
+    context "when phone_campaign_state answers present" do
+      it "returns true" do
+        expect(subject.phone_campaign_state_answers?).to eq(true)
+      end
+    end
+  end
+
   describe "#answer_for" do
     let(:field) do
       payload

@@ -171,6 +171,11 @@ module SmSmsCampaignWebhook
       end
     end
 
+    # @return [TrueClass,FalseClass] Are any campaign engagement answers present?
+    def phone_campaign_state_answers?
+      !phone_campaign_state_answers.empty?
+    end
+
     # @param field [String] Answer data to find
     # @return [Answer,NilClass] Modeled answer for field when found
     def answer_for(field:)
