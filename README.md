@@ -2,7 +2,7 @@
 
 [![Southern Made - Galaxy Logo](https://raw.github.com/SouthernMade/sm_sms_campaign_webhook/develop/logo_galaxymark.png)](https://www.southernmade.com/) by [Southern Made](https://www.southernmade.com/)
 
-[![Gem Version](https://badge.fury.io/rb/sm_sms_campaign_webhook.svg)](https://badge.fury.io/rb/sm_sms_campaign_webhook)
+[![Gem Version](https://badge.fury.io/rb/sm_sms_campaign_webhook.svg)](https://rubygems.org/gems/sm_sms_campaign_webhook)
 [![Travis Build Status](https://travis-ci.org/SouthernMade/sm_sms_campaign_webhook.svg?branch=develop)](https://travis-ci.org/SouthernMade/sm_sms_campaign_webhook)
 [![Code Climate Maintainability](https://api.codeclimate.com/v1/badges/2298f12a7d6f31688c9c/maintainability)](https://codeclimate.com/github/SouthernMade/sm_sms_campaign_webhook/maintainability)
 [![Code Climate Test Coverage](https://api.codeclimate.com/v1/badges/2298f12a7d6f31688c9c/test_coverage)](https://codeclimate.com/github/SouthernMade/sm_sms_campaign_webhook/test_coverage)
