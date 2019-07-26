@@ -120,6 +120,27 @@ Add `config/sidekiq.yml` config with:
   - mailers
 ```
 
+Add `config/initializers/sidekiq.rb` with:
+
+```ruby
+# @note Sidekiq server + client must both be configured for Redis.
+# @see https://github.com/mperham/sidekiq/wiki/Using-Redis
+
+Sidekiq.configure_server do |config|
+  config.redis = {
+    url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/0" },
+    network_timeout: ENV.fetch("REDIS_NETWORK_TIMEOUT") { 5 }.to_i,
+  }
+end
+
+Sidekiq.configure_client do |config|
+  config.redis = {
+    url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/0" },
+    network_timeout: ENV.fetch("REDIS_NETWORK_TIMEOUT") { 5 }.to_i,
+  }
+end
+```
+
 Update your Procfile or appropriate config to launch worker processes:
 
 ```
