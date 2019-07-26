@@ -217,7 +217,7 @@ It is important that you work closely with your Southern Made project manager to
 
 #### Processor Expections
 
-You must behavior for this method to ingest campaign engagement data in your paylod processor:
+You must implement behavior for this method to ingest campaign engagement data in your paylod processor:
 
 ```ruby
 def self.process_campaign_engagement(campaign_engagement)
