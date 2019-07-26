@@ -101,6 +101,8 @@ SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN="******"
 
 Payloads will be dispatched and processed asynchronously using [ActiveJob](https://edgeguides.rubyonrails.org/active_job_basics.html). Southern Made prefers that the app be configured with [Sidekiq](https://github.com/mperham/sidekiq) as the queue adapter.
 
+If you have already chosen another queue adapter then feel free to ignore this step!
+
 You can set the adapter in `config/application.rb` with:
 
 ```ruby
