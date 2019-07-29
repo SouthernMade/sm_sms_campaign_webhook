@@ -289,7 +289,7 @@ campaign_engagement.phone_campaign_state_answers? # TrueClass,FalseClass
 # If a match is found it returns instance of
 # SmSmsCampaignWebhook::CampaignEngagement::Answer data model.
 # If a match is not found it return nil (NilClass).
-campaign_enagement.answer_for(field: "email")     # Returned type answer specific
+campaign_engagement.answer_for(field: "email")     # Returned type answer specific
 ```
 
 #### Campaign Engagement Answer Data Model

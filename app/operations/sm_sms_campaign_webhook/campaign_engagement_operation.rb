@@ -17,8 +17,8 @@ module SmSmsCampaignWebhook
               "dispatched payload different from campaign.engagement #{payload.inspect}"
       end
 
-      campaign_enagement = CampaignEngagement.new(payload: payload)
-      processor.process_campaign_engagement(campaign_enagement)
+      campaign_engagement = CampaignEngagement.new(payload: payload)
+      processor.process_campaign_engagement(campaign_engagement)
     end
 
     # @return [Processable] Configured SMS campaign payload processor
