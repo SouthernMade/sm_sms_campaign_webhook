@@ -352,6 +352,17 @@ Here is an example payload for campaign engagement that could come through to th
 }
 ```
 
+[cURL](https://curl.haxx.se) example assuming the payload is to `tmp/sms_campaign_payload.json`, app is running running with mount point `sms_campaign`, web server uses port `3000`, and that you use your app's webhook auth token:
+
+```bash
+$ curl \
+--header "Authorization: Bearer WEBHOOKAUTHTOKEN" \
+--header "Content-Type: application/json" \
+--header "Accept: application/json" \
+--data @tmp/sms_campaign_payload.json \
+http://localhost:3000/sms_campaign/api/webhook
+```
+
 ## Development
 
 This gem uses [git-flow](https://github.com/nvie/gitflow) to manage deployments. The default branches are used to manage development and production code.
