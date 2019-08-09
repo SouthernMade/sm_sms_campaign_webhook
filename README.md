@@ -32,6 +32,7 @@ Work closely with your Southern Made project manager to gather details about wha
     - [Processor Expections](#processor-expections)
     - [Campaign Engagement Data Model](#campaign-engagement-data-model)
     - [Campaign Engagement Answer Data Model](#campaign-engagement-answer-data-model)
+    - [Campaign Engagement Payload Example](#campaign-engagement-payload-example)
 - [Development](#development)
   - [Versioning](#versioning)
   - [Testing](#testing)
@@ -308,6 +309,59 @@ The value data types could be one of the following:
 - number (`Integer`)
 - boolean (`TrueClass`, `FalseClass`)
 - us_state (`String`)
+
+#### Campaign Engagement Payload Example
+
+Here is an example payload for campaign engagement that could come through to the payload processor. Be sure to check with your Southern Made project manager to gather details about the answer fields and data types:
+
+```json
+{
+  "uuid": "99aaafe3-b52b-413f-a9cd-db52fa13b77a",
+  "object": "event",
+  "type": "campaign.engagement",
+  "created_at": "2019-08-09T18:29:05.052Z",
+  "data": {
+    "campaign": {
+      "id": 55,
+      "keyword": "KEYWORD"
+    },
+    "phone": {
+      "id": 80,
+      "number": "3335557777"
+    },
+    "phone_campaign_state": {
+      "id": 95,
+      "answers": {
+        "DOB": {
+          "value": "2001-07-04",
+          "collected_at": "2019-08-09T18:26:59.052Z"
+        },
+        "email": {
+          "value": "email@example.com",
+          "collected_at": "2019-08-09T18:27:59.052Z"
+        },
+        "vote-september": {
+          "value": 1,
+          "collected_at": "2019-08-09T18:28:59.052Z"
+        }
+      },
+      "completed": true,
+      "completed_at": "2019-08-09T18:28:59.052Z"
+    }
+  }
+}
+```
+
+[cURL](https://curl.haxx.se) example assuming the payload is to `tmp/sms_campaign_payload.json`, app is running running with mount point `sms_campaign`, web server uses port `3000`, and that you use your app's webhook auth token:
+
+```bash
+$ curl \
+--header "Authorization: Bearer WEBHOOKAUTHTOKEN" \
+--header "Content-Type: application/json" \
+--header "Accept: application/json" \
+--data @tmp/sms_campaign_payload.json \
+http://localhost:3000/sms_campaign/api/webhook
+```
 
 ## Development
 
