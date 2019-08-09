@@ -312,7 +312,45 @@ The value data types could be one of the following:
 
 #### Campaign Engagement Payload Example
 
-Coming soon....
+Here is an example payload for campaign engagement that could come through to the payload processor. Be sure to check with your Southern Made project manager to gather details about the answer fields and data types:
+
+```json
+{
+  "uuid": "99aaafe3-b52b-413f-a9cd-db52fa13b77a",
+  "object": "event",
+  "type": "campaign.engagement",
+  "created_at": "2019-08-09T18:29:05.052Z",
+  "data": {
+    "campaign": {
+      "id": 55,
+      "keyword": "KEYWORD"
+    },
+    "phone": {
+      "id": 80,
+      "number": "3335557777"
+    },
+    "phone_campaign_state": {
+      "id": 95,
+      "answers": {
+        "DOB": {
+          "value": "2001-07-04",
+          "collected_at": "2019-08-09T18:26:59.052Z"
+        },
+        "email": {
+          "value": "email@example.com",
+          "collected_at": "2019-08-09T18:27:59.052Z"
+        },
+        "vote-september": {
+          "value": 1,
+          "collected_at": "2019-08-09T18:28:59.052Z"
+        }
+      },
+      "completed": true,
+      "completed_at": "2019-08-09T18:28:59.052Z"
+    }
+  }
+}
+```
 
 ## Development
 
