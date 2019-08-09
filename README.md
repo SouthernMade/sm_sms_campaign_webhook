@@ -32,6 +32,7 @@ Work closely with your Southern Made project manager to gather details about wha
     - [Processor Expections](#processor-expections)
     - [Campaign Engagement Data Model](#campaign-engagement-data-model)
     - [Campaign Engagement Answer Data Model](#campaign-engagement-answer-data-model)
+    - [Campaign Engagement Payload Example](#campaign-engagement-payload-example)
 - [Development](#development)
   - [Versioning](#versioning)
   - [Testing](#testing)
@@ -308,6 +309,10 @@ The value data types could be one of the following:
 - number (`Integer`)
 - boolean (`TrueClass`, `FalseClass`)
 - us_state (`String`)
+
+#### Campaign Engagement Payload Example
+
+Coming soon....
 
 ## Development
 
