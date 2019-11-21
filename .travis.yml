@@ -3,8 +3,8 @@ language: ruby
 cache: bundler
 
 rvm:
-  - 2.5.5
-  - 2.6.3
+  - 2.5.7
+  - 2.6.5
 gemfile:
   - ci/gemfiles/Gemfile.rails-5.2.x
   - ci/gemfiles/Gemfile.rails-6.0.x
