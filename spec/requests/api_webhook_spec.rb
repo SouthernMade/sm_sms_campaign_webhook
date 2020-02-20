@@ -8,7 +8,7 @@ RSpec.describe "API webhook", type: :request do
     {
       "Content-Type" => "application/json",
       "Accept" => "application/json",
-      "Authorization" => "Bearer #{auth_token}"
+      "Authorization" => "Bearer #{auth_token}",
     }
   end
   let(:auth_token) { SmSmsCampaignWebhook.auth_token }
@@ -24,7 +24,7 @@ RSpec.describe "API webhook", type: :request do
     let(:headers) do
       {
         "Accept" => "*/*",
-        "Authorization" => "Bearer #{auth_token}"
+        "Authorization" => "Bearer #{auth_token}",
       }
     end
     let(:payload) do
