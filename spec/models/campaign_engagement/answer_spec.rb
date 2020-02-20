@@ -87,7 +87,7 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement::Answer, type: :model do
   end
 
   subject do
-    described_class.new(instance_params)
+    described_class.new(**instance_params)
   end
 
   describe "attributes" do
