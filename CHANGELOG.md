@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Required version of rake for development
+- Standardize style/format of gem code with [StandardRB](https://github.com/testdouble/standard)
 
 ## [1.0.0] - 2019-07-26
 ### Added
