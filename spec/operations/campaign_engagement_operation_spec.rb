@@ -18,7 +18,7 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagementOperation do
 
       it "raises an error" do
         expect {
-          described_class.process(method_params)
+          described_class.process(**method_params)
         }.to raise_error(ArgumentError)
       end
     end
@@ -30,7 +30,7 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagementOperation do
 
       it "raises an error" do
         expect {
-          described_class.process(method_params)
+          described_class.process(**method_params)
         }.to raise_error(SmSmsCampaignWebhook::PayloadDispatchError)
       end
     end
@@ -38,7 +38,7 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagementOperation do
     it "processes payload modeled as campaign engagement" do
       expect(described_class.processor).to receive(:process_campaign_engagement)
         .with(an_instance_of(SmSmsCampaignWebhook::CampaignEngagement))
-      described_class.process(method_params)
+      described_class.process(**method_params)
     end
   end
 

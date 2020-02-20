@@ -18,7 +18,7 @@ RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
 
       it "raises an error" do
         expect {
-          described_class.dispatch(method_params)
+          described_class.dispatch(**method_params)
         }.to raise_error(ArgumentError)
       end
     end
@@ -32,7 +32,7 @@ RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
         expect(
           SmSmsCampaignWebhook::ProcessCampaignEngagementJob
         ).to receive(:perform_later).with(payload)
-        described_class.dispatch(method_params)
+        described_class.dispatch(**method_params)
       end
     end
 
@@ -43,7 +43,7 @@ RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
 
       it "does not schedule any processing job" do
         expect {
-          described_class.dispatch(method_params)
+          described_class.dispatch(**method_params)
         }.to_not have_enqueued_job
       end
     end
@@ -53,7 +53,7 @@ RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
 
       it "does not schedule any processing job" do
         expect {
-          described_class.dispatch(method_params)
+          described_class.dispatch(**method_params)
         }.to_not have_enqueued_job
       end
     end
