@@ -14,7 +14,7 @@ module SmSmsCampaignWebhook
 
       if payload.fetch("type") != "campaign.engagement"
         raise PayloadDispatchError,
-              "dispatched payload different from campaign.engagement #{payload.inspect}"
+          "dispatched payload different from campaign.engagement #{payload.inspect}"
       end
 
       campaign_engagement = CampaignEngagement.new(payload: payload)
