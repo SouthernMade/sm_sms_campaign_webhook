@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe SmSmsCampaignWebhook::DispatchPayloadJob, type: :job do
   let(:payload) do
     random_sms_campaign_payload

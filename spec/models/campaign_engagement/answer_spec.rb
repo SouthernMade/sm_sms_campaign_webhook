@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "date"
 
 RSpec.describe SmSmsCampaignWebhook::CampaignEngagement::Answer, type: :model do

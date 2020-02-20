@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe SmSmsCampaignWebhook::CampaignEngagementOperation do
   describe ".process" do
     let(:method_params) do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.shared_examples "implementation of processable" do
   describe ".process_campaign_engagement" do
     let(:campaign_engagement) do

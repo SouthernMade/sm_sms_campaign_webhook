@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
   describe ".dispatch" do
     let(:method_params) do

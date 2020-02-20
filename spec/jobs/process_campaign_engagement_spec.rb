@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe SmSmsCampaignWebhook::ProcessCampaignEngagementJob, type: :job do
   let(:payload) do
     campaign_engagement_hash
