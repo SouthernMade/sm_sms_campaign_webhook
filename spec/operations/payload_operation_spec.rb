@@ -4,7 +4,7 @@ RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
   describe ".dispatch" do
     let(:method_params) do
       {
-        payload: payload
+        payload: payload,
       }
     end
     let(:payload) do
@@ -17,9 +17,9 @@ RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           described_class.dispatch(method_params)
-        end.to raise_error(ArgumentError)
+        }.to raise_error(ArgumentError)
       end
     end
 
@@ -42,19 +42,19 @@ RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
       end
 
       it "does not schedule any processing job" do
-        expect do
+        expect {
           described_class.dispatch(method_params)
-        end.to_not have_enqueued_job
+        }.to_not have_enqueued_job
       end
     end
 
     context "when payload does not specify type" do
-      let(:payload) { Hash.new }
+      let(:payload) { {} }
 
       it "does not schedule any processing job" do
-        expect do
+        expect {
           described_class.dispatch(method_params)
-        end.to_not have_enqueued_job
+        }.to_not have_enqueued_job
       end
     end
   end

@@ -4,7 +4,7 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagementOperation do
   describe ".process" do
     let(:method_params) do
       {
-        payload: payload
+        payload: payload,
       }
     end
     let(:payload) do
@@ -17,9 +17,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagementOperation do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           described_class.process(method_params)
-        end.to raise_error(ArgumentError)
+        }.to raise_error(ArgumentError)
       end
     end
 
@@ -29,9 +29,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagementOperation do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           described_class.process(method_params)
-        end.to raise_error(SmSmsCampaignWebhook::PayloadDispatchError)
+        }.to raise_error(SmSmsCampaignWebhook::PayloadDispatchError)
       end
     end
 
