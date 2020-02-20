@@ -367,6 +367,12 @@ http://localhost:3000/sms_campaign/api/webhook
 
 This gem uses [git-flow](https://github.com/nvie/gitflow) to manage deployments. The default branches are used to manage development and production code.
 
+### StandardRB
+
+This project uses [StandardRB](https://github.com/testdouble/standard), a hands-off wrapper around [Rubocop](https://docs.rubocop.org/en/stable/), to manage style/formatting/etc. Please apply changes before submitting pull requests:
+
+    $ bundle exec standardrb --fix
+
 ### Versioning
 
 Gem versioning follows [Semantic Versioning](https://semver.org).
