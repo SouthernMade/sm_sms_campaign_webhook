@@ -19,9 +19,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
   describe "#initialize" do
     context "when :payload param is not present" do
       it "raises an error" do
-        expect do
+        expect {
           described_class.new
-        end.to raise_error(ArgumentError)
+        }.to raise_error(ArgumentError)
       end
     end
 
@@ -43,9 +43,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.event_uuid
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
       end
     end
 
@@ -66,9 +66,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.event_type
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
       end
     end
 
@@ -89,9 +89,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.event_created_at
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
       end
     end
 
@@ -101,9 +101,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.event_created_at
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
       end
     end
 
@@ -124,9 +124,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.campaign_id
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
       end
     end
 
@@ -136,9 +136,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.campaign_id
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
       end
     end
 
@@ -159,9 +159,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.campaign_keyword
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
       end
     end
 
@@ -182,9 +182,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.phone_id
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
       end
     end
 
@@ -194,9 +194,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.phone_id
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
       end
     end
 
@@ -217,9 +217,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.phone_number
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
       end
     end
 
@@ -240,9 +240,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.phone_campaign_state_id
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
       end
     end
 
@@ -252,9 +252,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.phone_campaign_state_id
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
       end
     end
 
@@ -275,9 +275,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.phone_campaign_state_completed?
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
       end
     end
 
@@ -287,9 +287,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.phone_campaign_state_completed?
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
       end
     end
 
@@ -325,9 +325,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.phone_campaign_state_completed_at
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
       end
     end
 
@@ -337,9 +337,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.phone_campaign_state_completed_at
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
       end
     end
 
@@ -378,9 +378,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.phone_campaign_state_answers
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayload)
       end
     end
 
@@ -390,9 +390,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           subject.phone_campaign_state_answers
-        end.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
+        }.to raise_error(SmSmsCampaignWebhook::InvalidPayloadValue)
       end
     end
 
@@ -441,9 +441,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
 
     context "when :field param is not present" do
       it "raises an error" do
-        expect do
+        expect {
           subject.answer_for
-        end.to raise_error(ArgumentError)
+        }.to raise_error(ArgumentError)
       end
     end
 
@@ -457,9 +457,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement, type: :model do
 
     context "when answer for field is found" do
       it "returns modeled answer" do
-        expected_result = subject.phone_campaign_state_answers.detect do |answer|
+        expected_result = subject.phone_campaign_state_answers.detect { |answer|
           answer.field == field
-        end
+        }
         expect(
           subject.answer_for(field: field)
         ).to eq(expected_result)
