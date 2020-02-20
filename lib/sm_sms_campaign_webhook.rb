@@ -13,10 +13,10 @@ module SmSmsCampaignWebhook
   # @return [String] SMS campaign webhook auth token
   # @raise [MissingConfigError] when ENV does not contain SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN value
   def self.auth_token
-    @auth_token ||= ENV.fetch("SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN") do
+    @auth_token ||= ENV.fetch("SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN") {
       raise MissingConfigError,
-            "ENV does not contain SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN value"
-    end
+        "ENV does not contain SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN value"
+    }
   end
 
   # @return [Processable] SMS campaign payload processor used by operations
