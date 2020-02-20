@@ -40,7 +40,7 @@ Gem::Specification.new do |spec|
 
   # Development + test dependencies.
   spec.add_development_dependency "bundler", "~> 2.0"
-  spec.add_development_dependency "rake", "~> 12.0"
+  spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec-rails", "~> 3.8"
   spec.add_development_dependency "simplecov", "~> 0.17"
   spec.add_development_dependency "yard", "~> 0.9"

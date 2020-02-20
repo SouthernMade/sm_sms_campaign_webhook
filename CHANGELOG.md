@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Campaign engagement payload example to README
 
+### Changed
+- Required version of rake for development
+
 ## [1.0.0] - 2019-07-26
 ### Added
 - Mountable Rails engine as API
