@@ -7,9 +7,9 @@ RSpec.describe SmSmsCampaignWebhook::ProcessCampaignEngagementJob, type: :job do
 
   describe "#perform_later" do
     it "schedules job to process campaign engagement payload" do
-      expect do
+      expect {
         described_class.perform_later(payload)
-      end.to have_enqueued_job
+      }.to have_enqueued_job
     end
   end
 
