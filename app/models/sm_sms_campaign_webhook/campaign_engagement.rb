@@ -16,9 +16,9 @@ module SmSmsCampaignWebhook
     # @raise [InvalidPayload] when uuid missing from payload
     def event_uuid
       @event_uuid ||= String(
-        payload.fetch("uuid") do
+        payload.fetch("uuid") {
           raise_invalid_payload_for("uuid")
-        end.freeze
+        }.freeze
       )
     end
 
@@ -26,9 +26,9 @@ module SmSmsCampaignWebhook
     # @raise [InvalidPayload] when type missing from payload
     def event_type
       @event_type ||= String(
-        payload.fetch("type") do
+        payload.fetch("type") {
           raise_invalid_payload_for("type")
-        end.freeze
+        }.freeze
       )
     end
 
@@ -37,14 +37,14 @@ module SmSmsCampaignWebhook
     # @raise [InvalidPayloadValue] when created_at not datetime
     def event_created_at
       @event_created_at ||= begin
-        raw_created_at = payload.fetch("created_at") do
+        raw_created_at = payload.fetch("created_at") {
           raise_invalid_payload_for("created_at")
-        end
+        }
         DateTime.parse(raw_created_at).freeze
       end
     rescue ArgumentError
       raise InvalidPayloadValue,
-            "created_at has invalid datetime value #{payload.inspect}"
+        "created_at has invalid datetime value #{payload.inspect}"
     end
 
     # @return [Integer] ID of the engaged campaign
@@ -52,22 +52,22 @@ module SmSmsCampaignWebhook
     # @raise [InvalidPayloadValue] when campaign id not numeric
     def campaign_id
       @campaign_id ||= Integer(
-        campaign_hash.fetch("id") do
+        campaign_hash.fetch("id") {
           raise_invalid_payload_for("campaign id")
-        end
+        }
       )
     rescue ArgumentError
       raise InvalidPayloadValue,
-            "campaign id has invalid integer value #{payload.inspect}"
+        "campaign id has invalid integer value #{payload.inspect}"
     end
 
     # @return [String] Keyword of the engaged campaign
     # @raise [InvalidPayload] when campaign keyword missing from payload
     def campaign_keyword
       @campaign_keyword ||= String(
-        campaign_hash.fetch("keyword") do
+        campaign_hash.fetch("keyword") {
           raise_invalid_payload_for("campaign keyword")
-        end.freeze
+        }.freeze
       )
     end
 
@@ -76,22 +76,22 @@ module SmSmsCampaignWebhook
     # @raise [InvalidPayloadValue] when phone id not numeric
     def phone_id
       @phone_id ||= Integer(
-        phone_hash.fetch("id") do
+        phone_hash.fetch("id") {
           raise_invalid_payload_for("phone id")
-        end
+        }
       )
     rescue ArgumentError
       raise InvalidPayloadValue,
-            "phone id has invalid integer value #{payload.inspect}"
+        "phone id has invalid integer value #{payload.inspect}"
     end
 
     # @return [String] Phone number engaging the campaign
     # @raise [InvalidPayload] when phone number missing from payload
     def phone_number
       @phone_number ||= String(
-        phone_hash.fetch("number") do
+        phone_hash.fetch("number") {
           raise_invalid_payload_for("phone number")
-        end.freeze
+        }.freeze
       )
     end
 
@@ -100,13 +100,13 @@ module SmSmsCampaignWebhook
     # @raise [InvalidPayloadValue] when phone_campaign_state id not numeric
     def phone_campaign_state_id
       @phone_campaign_state_id ||= Integer(
-        phone_campaign_state_hash.fetch("id") do
+        phone_campaign_state_hash.fetch("id") {
           raise_invalid_payload_for("phone_campaign_state id")
-        end
+        }
       )
     rescue ArgumentError
       raise InvalidPayloadValue,
-            "phone_campaign_state id has invalid integer value #{payload.inspect}"
+        "phone_campaign_state id has invalid integer value #{payload.inspect}"
     end
 
     # @return [TrueClass,FalseClass] Has campaign engagement completed?
@@ -114,21 +114,21 @@ module SmSmsCampaignWebhook
     # @raise [InvalidPayloadValue] when phone_campaign_state completed is not boolean
     def phone_campaign_state_completed?
       # Has the boolean value already been assigned?
-      if !@phone_campaign_state_completed.nil?
+      unless @phone_campaign_state_completed.nil?
         return @phone_campaign_state_completed
       end
 
       # Extract the value and memoize it.
       @phone_campaign_state_completed = begin
         completed = phone_campaign_state_hash
-          .fetch("completed") do
+          .fetch("completed") {
             raise_invalid_payload_for("phone_campaign_state completed")
-          end
+          }
 
         # Is this a boolean value?
         if [true, false].none?(completed)
           raise InvalidPayloadValue,
-                "phone_campaign_state completed has invalid boolean value #{payload.inspect}"
+            "phone_campaign_state completed has invalid boolean value #{payload.inspect}"
         end
 
         completed
@@ -140,14 +140,14 @@ module SmSmsCampaignWebhook
     # @raise [InvalidPayloadValue] when phone_campaign_state completed_at not datetime
     def phone_campaign_state_completed_at
       @phone_campaign_state_completed_at ||= begin
-        raw_completed_at = phone_campaign_state_hash.fetch("completed_at") do
+        raw_completed_at = phone_campaign_state_hash.fetch("completed_at") {
           raise_invalid_payload_for("phone_campaign_state completed_at")
-        end
+        }
         DateTime.parse(raw_completed_at).freeze if raw_completed_at
       end
     rescue ArgumentError
       raise InvalidPayloadValue,
-            "phone_campaign_state completed_at has invalid datetime value #{payload.inspect}"
+        "phone_campaign_state completed_at has invalid datetime value #{payload.inspect}"
     end
 
     # @return [Array<Answer>] Modeled campaign engagement answers
@@ -156,12 +156,12 @@ module SmSmsCampaignWebhook
     def phone_campaign_state_answers
       @phone_campaign_state_answers ||= begin
         # Extract answers data from payload.
-        data = phone_campaign_state_hash.fetch("answers") do
+        data = phone_campaign_state_hash.fetch("answers") {
           raise_invalid_payload_for("phone_campaign_state answers")
-        end
-        
+        }
+
         # Is this hash data?
-        if !data.is_a?(Hash)
+        unless data.is_a?(Hash)
           raise InvalidPayloadValue,
             "phone_campaign_state answers has invalid hash value #{payload.inspect}"
         end

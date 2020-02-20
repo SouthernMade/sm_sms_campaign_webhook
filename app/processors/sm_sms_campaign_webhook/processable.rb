@@ -14,7 +14,7 @@ module SmSmsCampaignWebhook
       # @raise [NotImplementedError] requiring implementing class to define behavior
       def process_campaign_engagement(campaign_engagement)
         raise NotImplementedError,
-              "#{self.class} must implement .process_campaign_engagement receiving campaign_engagement param"
+          "#{self.class} must implement .process_campaign_engagement receiving campaign_engagement param"
       end
     end
   end
