@@ -26,9 +26,9 @@ RSpec.describe SmSmsCampaignWebhook do
     end
 
     it "does not raise an error without a block" do
-      expect do
+      expect {
         described_class.config
-      end.to_not raise_error
+      }.to_not raise_error
     end
 
     it "updates library config values" do
@@ -64,9 +64,9 @@ RSpec.describe SmSmsCampaignWebhook do
       end
 
       it "raises an error" do
-        expect do
+        expect {
           described_class.auth_token
-        end.to raise_error(described_class::MissingConfigError)
+        }.to raise_error(described_class::MissingConfigError)
       end
     end
   end
@@ -96,9 +96,9 @@ RSpec.describe SmSmsCampaignWebhook do
     end
 
     it "updates process config" do
-      expect do
+      expect {
         described_class.processor = processor_klass
-      end.to change(described_class, :processor).to(processor_klass)
+      }.to change(described_class, :processor).to(processor_klass)
     end
   end
 end
