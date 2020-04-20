@@ -47,7 +47,7 @@ This gem is tested with Rails 5.2.x, 6.0.x versions.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'sm_sms_campaign_webhook', '~> 1.0'
+gem "sm_sms_campaign_webhook", "~> 1.0"
 ```
 
 And then execute:
@@ -132,14 +132,14 @@ Add `config/initializers/sidekiq.rb` with:
 Sidekiq.configure_server do |config|
   config.redis = {
     url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/0" },
-    network_timeout: ENV.fetch("REDIS_NETWORK_TIMEOUT") { 5 }.to_i,
+    network_timeout: ENV.fetch("REDIS_NETWORK_TIMEOUT") { 5 }.to_i
   }
 end
 
 Sidekiq.configure_client do |config|
   config.redis = {
     url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/0" },
-    network_timeout: ENV.fetch("REDIS_NETWORK_TIMEOUT") { 5 }.to_i,
+    network_timeout: ENV.fetch("REDIS_NETWORK_TIMEOUT") { 5 }.to_i
   }
 end
 ```
@@ -352,7 +352,7 @@ Here is an example payload for campaign engagement that could come through to th
 }
 ```
 
-[cURL](https://curl.haxx.se) example assuming the payload is to `tmp/sms_campaign_payload.json`, app is running running with mount point `sms_campaign`, web server uses port `3000`, and that you use your app's webhook auth token:
+[cURL](https://curl.haxx.se) example assuming the payload file path is `tmp/sms_campaign_payload.json`, app is running running with mount point `sms_campaign`, web server uses port `3000`, and that you use your app's webhook auth token:
 
 ```bash
 $ curl \
