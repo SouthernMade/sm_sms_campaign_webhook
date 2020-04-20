@@ -73,7 +73,7 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagement::Answer, type: :model do
   let(:instance_params) do
     {
       field: field,
-      answer_hash: answer_hash,
+      answer_hash: answer_hash
     }
   end
   let(:field) { payload.keys.first }

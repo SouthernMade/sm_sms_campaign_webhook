@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
     "changelog_uri" => "#{spec.homepage}/blob/develop/CHANGELOG.md",
     "documentation_uri" => "https://www.rubydoc.info/gems/sm_sms_campaign_webhook/#{spec.version}",
     "homepage_uri" => spec.homepage,
-    "source_code_uri" => spec.homepage,
+    "source_code_uri" => spec.homepage
   }
 
   # Specify which files should be added to the gem when it is released.
@@ -41,8 +41,8 @@ Gem::Specification.new do |spec|
   # Development + test dependencies.
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "rspec-rails", "~> 3.8"
-  spec.add_development_dependency "simplecov", "~> 0.17.1"
+  spec.add_development_dependency "rspec-rails", "~> 4.0"
+  spec.add_development_dependency "simplecov", "~> 0.18.5"
   spec.add_development_dependency "standard"
   spec.add_development_dependency "yard", "~> 0.9"
 end

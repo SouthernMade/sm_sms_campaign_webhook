@@ -4,7 +4,7 @@ RSpec.describe SmSmsCampaignWebhook::PayloadOperation do
   describe ".dispatch" do
     let(:method_params) do
       {
-        payload: payload,
+        payload: payload
       }
     end
     let(:payload) do
