@@ -20,7 +20,7 @@ module Helpers
         uuid: SecureRandom.uuid,
         object: "event",
         type: "unsupported",
-        created_at: Time.zone.now,
+        created_at: Time.zone.now
       }.to_json
     end
 
@@ -39,19 +39,19 @@ module Helpers
         data: {
           campaign: {
             id: rand(1..100),
-            keyword: "KEYWORD",
+            keyword: "KEYWORD"
           },
           phone: {
             id: rand(1..100),
-            number: "3335557777",
+            number: "3335557777"
           },
           phone_campaign_state: {
             id: rand(1..100),
             answers: generate_answers_hash(total_answers),
             completed: completed,
-            completed_at: (completed ? Time.zone.now : nil),
-          },
-        },
+            completed_at: (completed ? Time.zone.now : nil)
+          }
+        }
       }.to_json
     end
 
@@ -90,9 +90,9 @@ module Helpers
           42,
           true,
           false,
-          "TN",
+          "TN"
         ].sample,
-        collected_at: Time.zone.now - collection_buffer.seconds,
+        collected_at: Time.zone.now - collection_buffer.seconds
       }
     end
   end
