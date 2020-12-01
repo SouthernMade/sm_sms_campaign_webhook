@@ -11,10 +11,7 @@ RSpec.describe SmSmsCampaignWebhook do
 
   describe ".config" do
     let(:processor_klass) do
-      class MockProcessor
-        include SmSmsCampaignWebhook::Processable
-      end
-      MockProcessor
+      MockWebhookProcessor
     end
 
     before do
@@ -81,10 +78,7 @@ RSpec.describe SmSmsCampaignWebhook do
 
   describe ".processor=" do
     let(:processor_klass) do
-      class MockProcessor
-        include SmSmsCampaignWebhook::Processable
-      end
-      MockProcessor
+      MockWebhookProcessor
     end
 
     before do
