@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Campaign engagement payload example to README
+- Support for Rails 6.1.x
 
 ### Changed
 - Required version of rake for development
@@ -14,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI to test against Ruby 2.7.x
 - Required Ruby version to permit 3.0.x
 - CI to test against Ruby 3.0.x
+- CI to test against Rails 6.1.x
 
 ## [1.0.0] - 2019-07-26
 ### Added
