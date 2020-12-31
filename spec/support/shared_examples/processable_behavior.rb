@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.shared_examples "implementation of processable" do
   describe ".process_campaign_engagement" do
     let(:campaign_engagement) do
@@ -8,15 +10,15 @@ RSpec.shared_examples "implementation of processable" do
     end
 
     it "raises an error without any arguments" do
-      expect do
+      expect {
         described_class.process_campaign_engagement
-      end.to raise_error(ArgumentError)
+      }.to raise_error(ArgumentError)
     end
 
     it "raises a not implemented error" do
-      expect do
+      expect {
         described_class.process_campaign_engagement(campaign_engagement)
-      end.to raise_error(NotImplementedError)
+      }.to raise_error(NotImplementedError)
     end
   end
 end

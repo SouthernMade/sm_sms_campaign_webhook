@@ -8,7 +8,7 @@ require "rdoc/task"
 
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = "rdoc"
-  rdoc.title    = "SmSmsCampaignWebhook"
+  rdoc.title = "SmSmsCampaignWebhook"
   rdoc.options << "--line-numbers"
   rdoc.rdoc_files.include("README.md")
   rdoc.rdoc_files.include("lib/**/*.rb")
@@ -21,4 +21,4 @@ require "rspec/core/rake_task"
 
 RSpec::Core::RakeTask.new(:spec)
 
-task :default => :spec
+task default: :spec

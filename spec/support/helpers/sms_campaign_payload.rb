@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "securerandom"
 
 module Helpers
@@ -71,9 +73,9 @@ module Helpers
       Hash[
         (1..total_entries)
           .to_a
-          .map do |num|
+          .map { |num|
             ["field#{num}", generate_answer_hash]
-          end
+          }
       ]
     end
 

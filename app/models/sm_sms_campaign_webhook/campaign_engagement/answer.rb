@@ -9,13 +9,13 @@ module SmSmsCampaignWebhook
       # @param data [Hash] Answers from payload
       # @return [Array<Answer>] Modeled answer data sorted by collected_at
       def self.cast(data:)
-        data.map do |field, answer_hash|
+        data.map { |field, answer_hash|
           new(field: field, answer_hash: answer_hash)
-        end.sort_by(&:collected_at)
+        }.sort_by(&:collected_at)
       end
 
       attr_reader :field,
-                  :answer_hash
+        :answer_hash
 
       # @param field [String] Field describing the answer
       # @param answer_hash [Hash] Answer data from payload
@@ -36,19 +36,23 @@ module SmSmsCampaignWebhook
       # @raise [InvalidPayload] when value is missing from answer_hash
       def value
         # Could be boolean so cannot rely on double pipe assignment guard.
-        if !@value.nil?
+        unless @value.nil?
           return @value
         end
 
         # Extract the value and memoize it.
         @value = begin
-         raw_value = answer_hash.fetch("value") do
-           raise InvalidPayload,
-                 "value missing from answer_hash #{answer_hash.inspect}"
-         end.freeze
+          raw_value = answer_hash.fetch("value") {
+            raise InvalidPayload,
+              "value missing from answer_hash #{answer_hash.inspect}"
+          }.freeze
 
-         # Attempt to parse date value falling back to raw value.
-         Date.strptime(raw_value, "%Y-%m-%d").freeze rescue raw_value
+          # Attempt to parse date value falling back to raw value.
+          begin
+            Date.strptime(raw_value, "%Y-%m-%d").freeze
+          rescue
+            raw_value
+          end
         end
       end
 
@@ -57,15 +61,15 @@ module SmSmsCampaignWebhook
       # @raise [InvalidPayloadValue] when collected_at not datetime
       def collected_at
         @collected_at ||= begin
-          raw_collected_at = answer_hash.fetch("collected_at") do
+          raw_collected_at = answer_hash.fetch("collected_at") {
             raise InvalidPayload,
-                  "collected_at missing from answer_hash #{answer_hash.inspect}"
-          end
+              "collected_at missing from answer_hash #{answer_hash.inspect}"
+          }
           DateTime.parse(raw_collected_at).freeze
         end
       rescue ArgumentError
         raise InvalidPayloadValue,
-              "collected_at has invalid datetime value #{answer_hash.inspect}"
+          "collected_at has invalid datetime value #{answer_hash.inspect}"
       end
     end
   end

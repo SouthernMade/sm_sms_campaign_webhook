@@ -22,8 +22,8 @@ module SmSmsCampaignWebhook
       # Mount engine to path in config/routes.rb
       def add_mount_path
         insert_into_file "config/routes.rb",
-                         "  mount SmSmsCampaignWebhook::Engine => \"/sms_campaign\"\n",
-                         after: "Rails.application.routes.draw do\n"
+          "  mount SmSmsCampaignWebhook::Engine => \"/sms_campaign\"\n",
+          after: "Rails.application.routes.draw do\n"
       end
 
       # Dump the README for the app developer

@@ -1,8 +1,8 @@
 # SmSmsCampaignWebhook
 
-![Southern Made - Galaxy Logo](https://raw.github.com/SouthernMade/sm_sms_campaign_webhook/develop/logo_galaxymark.png) by [Southern Made](https://www.southernmade.com/)
+[![Southern Made - Galaxy Logo](https://raw.github.com/SouthernMade/sm_sms_campaign_webhook/develop/logo_galaxymark.png)](https://www.southernmade.com/) by [Southern Made](https://www.southernmade.com/)
 
-[![Gem Version](https://badge.fury.io/rb/sm_sms_campaign_webhook.svg)](https://badge.fury.io/rb/sm_sms_campaign_webhook)
+[![Gem Version](https://badge.fury.io/rb/sm_sms_campaign_webhook.svg)](https://rubygems.org/gems/sm_sms_campaign_webhook)
 [![Travis Build Status](https://travis-ci.org/SouthernMade/sm_sms_campaign_webhook.svg?branch=develop)](https://travis-ci.org/SouthernMade/sm_sms_campaign_webhook)
 [![Code Climate Maintainability](https://api.codeclimate.com/v1/badges/2298f12a7d6f31688c9c/maintainability)](https://codeclimate.com/github/SouthernMade/sm_sms_campaign_webhook/maintainability)
 [![Code Climate Test Coverage](https://api.codeclimate.com/v1/badges/2298f12a7d6f31688c9c/test_coverage)](https://codeclimate.com/github/SouthernMade/sm_sms_campaign_webhook/test_coverage)
@@ -32,6 +32,7 @@ Work closely with your Southern Made project manager to gather details about wha
     - [Processor Expections](#processor-expections)
     - [Campaign Engagement Data Model](#campaign-engagement-data-model)
     - [Campaign Engagement Answer Data Model](#campaign-engagement-answer-data-model)
+    - [Campaign Engagement Payload Example](#campaign-engagement-payload-example)
 - [Development](#development)
   - [Versioning](#versioning)
   - [Testing](#testing)
@@ -41,12 +42,12 @@ Work closely with your Southern Made project manager to gather details about wha
 
 ## Installation
 
-This gem is tested with Rails 5.2.x, 6.0.x versions.
+This gem is tested with Rails 6.0.x, 6.1.x versions.
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'sm_sms_campaign_webhook', '~> 1.0'
+gem "sm_sms_campaign_webhook", "~> 1.0"
 ```
 
 And then execute:
@@ -101,11 +102,45 @@ SM_SMS_CAMPAIGN_WEBHOOK_AUTH_TOKEN="******"
 
 Payloads will be dispatched and processed asynchronously using [ActiveJob](https://edgeguides.rubyonrails.org/active_job_basics.html). Southern Made prefers that the app be configured with [Sidekiq](https://github.com/mperham/sidekiq) as the queue adapter.
 
+If you have already chosen another queue adapter then feel free to ignore this step!
+
 You can set the adapter in `config/application.rb` with:
 
 ```ruby
 class Application < Rails::Application
   config.active_job.queue_adapter = :sidekiq
+end
+```
+
+Add `config/sidekiq.yml` config with:
+
+```yaml
+---
+:concurrency: <%= ENV.fetch("SIDEKIQ_CONCURRENCY") { 5 }.to_i %>
+:timeout: <%= ENV.fetch("SIDEKIQ_TIMEOUT") { 25 }.to_i %>
+:queues:
+  - default
+  - mailers
+```
+
+Add `config/initializers/sidekiq.rb` with:
+
+```ruby
+# @note Sidekiq server + client must both be configured for Redis.
+# @see https://github.com/mperham/sidekiq/wiki/Using-Redis
+
+Sidekiq.configure_server do |config|
+  config.redis = {
+    url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/0" },
+    network_timeout: ENV.fetch("REDIS_NETWORK_TIMEOUT") { 5 }.to_i
+  }
+end
+
+Sidekiq.configure_client do |config|
+  config.redis = {
+    url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/0" },
+    network_timeout: ENV.fetch("REDIS_NETWORK_TIMEOUT") { 5 }.to_i
+  }
 end
 ```
 
@@ -206,7 +241,7 @@ It is important that you work closely with your Southern Made project manager to
 
 #### Processor Expections
 
-You must behavior for this method to ingest campaign engagement data in your paylod processor:
+You must implement behavior for this method to ingest campaign engagement data in your paylod processor:
 
 ```ruby
 def self.process_campaign_engagement(campaign_engagement)
@@ -255,7 +290,7 @@ campaign_engagement.phone_campaign_state_answers? # TrueClass,FalseClass
 # If a match is found it returns instance of
 # SmSmsCampaignWebhook::CampaignEngagement::Answer data model.
 # If a match is not found it return nil (NilClass).
-campaign_enagement.answer_for(field: "email")     # Returned type answer specific
+campaign_engagement.answer_for(field: "email")     # Returned type answer specific
 ```
 
 #### Campaign Engagement Answer Data Model
@@ -275,9 +310,68 @@ The value data types could be one of the following:
 - boolean (`TrueClass`, `FalseClass`)
 - us_state (`String`)
 
+#### Campaign Engagement Payload Example
+
+Here is an example payload for campaign engagement that could come through to the payload processor. Be sure to check with your Southern Made project manager to gather details about the answer fields and data types:
+
+```json
+{
+  "uuid": "99aaafe3-b52b-413f-a9cd-db52fa13b77a",
+  "object": "event",
+  "type": "campaign.engagement",
+  "created_at": "2019-08-09T18:29:05.052Z",
+  "data": {
+    "campaign": {
+      "id": 55,
+      "keyword": "KEYWORD"
+    },
+    "phone": {
+      "id": 80,
+      "number": "3335557777"
+    },
+    "phone_campaign_state": {
+      "id": 95,
+      "answers": {
+        "DOB": {
+          "value": "2001-07-04",
+          "collected_at": "2019-08-09T18:26:59.052Z"
+        },
+        "email": {
+          "value": "email@example.com",
+          "collected_at": "2019-08-09T18:27:59.052Z"
+        },
+        "vote-september": {
+          "value": 1,
+          "collected_at": "2019-08-09T18:28:59.052Z"
+        }
+      },
+      "completed": true,
+      "completed_at": "2019-08-09T18:28:59.052Z"
+    }
+  }
+}
+```
+
+[cURL](https://curl.haxx.se) example assuming the payload file path is `tmp/sms_campaign_payload.json`, app is running running with mount point `sms_campaign`, web server uses port `3000`, and that you use your app's webhook auth token:
+
+```bash
+$ curl \
+--header "Authorization: Bearer WEBHOOKAUTHTOKEN" \
+--header "Content-Type: application/json" \
+--header "Accept: application/json" \
+--data @tmp/sms_campaign_payload.json \
+http://localhost:3000/sms_campaign/api/webhook
+```
+
 ## Development
 
 This gem uses [git-flow](https://github.com/nvie/gitflow) to manage deployments. The default branches are used to manage development and production code.
+
+### StandardRB
+
+This project uses [StandardRB](https://github.com/testdouble/standard), a hands-off wrapper around [Rubocop](https://docs.rubocop.org/en/stable/), to manage style/formatting/etc. Please apply changes before submitting pull requests:
+
+    $ bundle exec standardrb --fix
 
 ### Versioning
 

@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2020-12-31
+### Added
+- Campaign engagement payload example to README
+- Support for Rails 6.1.x
+
+### Changed
+- Required version of rake for development
+- Standardize style/format of gem code with [StandardRB](https://github.com/testdouble/standard)
+- CI to test against Ruby 2.7.x
+- Required Ruby version to permit 3.0.x
+- CI to test against Ruby 3.0.x
+- CI to test against Rails 6.1.x
+
+### Removed
+- Rails 5.2.x support
+
 ## [1.0.0] - 2019-07-26
 ### Added
 - Mountable Rails engine as API

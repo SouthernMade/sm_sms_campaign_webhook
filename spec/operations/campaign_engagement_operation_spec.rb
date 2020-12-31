@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe SmSmsCampaignWebhook::CampaignEngagementOperation do
   describe ".process" do
     let(:method_params) do
@@ -15,9 +17,9 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagementOperation do
       end
 
       it "raises an error" do
-        expect do
-          described_class.process(method_params)
-        end.to raise_error(ArgumentError)
+        expect {
+          described_class.process(**method_params)
+        }.to raise_error(ArgumentError)
       end
     end
 
@@ -27,16 +29,16 @@ RSpec.describe SmSmsCampaignWebhook::CampaignEngagementOperation do
       end
 
       it "raises an error" do
-        expect do
-          described_class.process(method_params)
-        end.to raise_error(SmSmsCampaignWebhook::PayloadDispatchError)
+        expect {
+          described_class.process(**method_params)
+        }.to raise_error(SmSmsCampaignWebhook::PayloadDispatchError)
       end
     end
 
     it "processes payload modeled as campaign engagement" do
       expect(described_class.processor).to receive(:process_campaign_engagement)
         .with(an_instance_of(SmSmsCampaignWebhook::CampaignEngagement))
-      described_class.process(method_params)
+      described_class.process(**method_params)
     end
   end
 

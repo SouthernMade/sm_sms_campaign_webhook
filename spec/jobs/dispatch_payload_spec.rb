@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe SmSmsCampaignWebhook::DispatchPayloadJob, type: :job do
   let(:payload) do
     random_sms_campaign_payload
@@ -5,9 +7,9 @@ RSpec.describe SmSmsCampaignWebhook::DispatchPayloadJob, type: :job do
 
   describe "#perform_later" do
     it "schedules job to dispatch a sms campaign payload" do
-      expect do
+      expect {
         described_class.perform_later(payload)
-      end.to have_enqueued_job
+      }.to have_enqueued_job
     end
   end
 
