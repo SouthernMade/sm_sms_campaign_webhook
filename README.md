@@ -383,7 +383,7 @@ This project uses Rspec for testing. Specs must be green for any PR to be accept
 
     $ bundle exec rspec
 
-The project is setup with [Travis CI](https://travis-ci.org) to automate test. The various environments that are regularly tested can be seen in [.travis.yml](https://github.com/SouthernMade/sm_sms_campaign_webhook/blob/develop/.travis.yml).
+The project is setup with [GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) to automate testing. The various workflows and environments can be seen in [.github/workflows/ci.yml](https://github.com/SouthernMade/sm_sms_campaign_webhook/blob/develop/.github/workflows/ci.yml).
 
 ### Documentation
 
