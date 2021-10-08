@@ -47,4 +47,4 @@ jobs:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
         coverageCommand: bundle exec rspec
-        coverageLocation: ${{ github.workspace }}/coverage/index.html:simplecov
+        coverageLocations: ${{ github.workspace }}/coverage/index.html:simplecov
