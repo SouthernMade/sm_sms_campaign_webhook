@@ -1,21 +1,13 @@
-name: CI
+name: Coverage
 
 on:
   push:
     branches: [ develop ]
-  pull_request:
-    branches: [ develop ]
 
 jobs:
-  test:
+  coverage:
 
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        ruby-version: ['2.6', '2.7', '3.0']
-        gemfile: ['rails-6.0', 'rails-6.1']
-    env:
-      BUNDLE_GEMFILE: ${{ github.workspace }}/ci/gemfiles/${{ matrix.gemfile }}.gemfile
 
     steps:
     - uses: actions/checkout@v2
@@ -24,7 +16,11 @@ jobs:
     # change this to (see https://github.com/ruby/setup-ruby#versioning):
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: ${{ matrix.ruby-version }}
+        ruby-version: '3.0'
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    - name: Run tests
-      run: bundle exec rspec
+    - name: Test coverage
+      uses: paambaati/codeclimate-action@v2.7.5
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        coverageCommand: bundle exec rspec
