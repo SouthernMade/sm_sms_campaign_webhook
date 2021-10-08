@@ -70,13 +70,11 @@ module Helpers
     # @param total_entries [Integer]
     # @return [Hash]
     def generate_answers_hash(total_entries)
-      Hash[
-        (1..total_entries)
-          .to_a
-          .map { |num|
-            ["field#{num}", generate_answer_hash]
-          }
-      ]
+      (1..total_entries)
+        .to_a
+        .map { |num|
+        ["field#{num}", generate_answer_hash]
+      }.to_h
     end
 
     # @return [Hash]
