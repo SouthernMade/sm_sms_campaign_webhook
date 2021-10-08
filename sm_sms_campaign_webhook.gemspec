@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "sm_sms_campaign_webhook/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "sm_sms_campaign_webhook" 
+  spec.name = "sm_sms_campaign_webhook"
   spec.version = SmSmsCampaignWebhook::VERSION
   spec.license = "MIT"
   spec.summary = "Middleware providing webhook for Southern Made SMS Campaign Engagement."
