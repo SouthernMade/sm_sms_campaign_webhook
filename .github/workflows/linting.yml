@@ -7,7 +7,7 @@ on:
     branches: [ develop ]
 
 jobs:
-  coverage:
+  test:
 
     runs-on: ubuntu-latest
 
