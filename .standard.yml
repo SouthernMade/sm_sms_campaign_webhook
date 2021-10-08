@@ -3,3 +3,4 @@ format: progress
 default_ignores: false
 ignore:
   - spec/rails_app/**/*
+  - vendor/**/*
