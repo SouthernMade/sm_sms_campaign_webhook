@@ -19,7 +19,7 @@ require "sm_sms_campaign_webhook"
 module RailsApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
+    config.load_defaults Rails.version.slice(0..2).to_f
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
