@@ -7,7 +7,7 @@ on:
 
 jobs:
   coverage:
-
+    name: 🔦 Quality Check
     runs-on: ubuntu-latest
 
     steps:

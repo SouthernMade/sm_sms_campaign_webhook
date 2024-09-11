@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-
+    name: 🔦 Verify Code
     runs-on: ubuntu-latest
 
     steps:
