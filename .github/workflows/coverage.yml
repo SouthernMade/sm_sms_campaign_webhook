@@ -2,11 +2,12 @@ name: Coverage
 
 on:
   push:
-    branches: [ develop ]
+    branches:
+      - develop
 
 jobs:
   coverage:
-
+    name: 🔦 Quality Check
     runs-on: ubuntu-latest
 
     steps:
