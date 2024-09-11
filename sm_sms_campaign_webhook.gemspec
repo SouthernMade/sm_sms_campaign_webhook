@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Required version of Ruby guided by Rails.
-  spec.required_ruby_version = ">= 2.7.5"
+  spec.required_ruby_version = ">= 3.0.7"
 
   # Runtime dependencies.
   spec.add_dependency "rails", [">= 6.0", "< 7.1"]
