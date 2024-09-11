@@ -18,7 +18,7 @@ jobs:
       BUNDLE_GEMFILE: ${{ github.workspace }}/ci/gemfiles/${{ matrix.gemfile }}.gemfile
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Ruby
     # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
     # change this to (see https://github.com/ruby/setup-ruby#versioning):
