@@ -6,6 +6,8 @@
 [![CI](https://github.com/SouthernMade/sm_sms_campaign_webhook/actions/workflows/ci.yml/badge.svg)](https://github.com/SouthernMade/sm_sms_campaign_webhook/actions/workflows/ci.yml)
 [![Code Climate Maintainability](https://api.codeclimate.com/v1/badges/2298f12a7d6f31688c9c/maintainability)](https://codeclimate.com/github/SouthernMade/sm_sms_campaign_webhook/maintainability)
 [![Code Climate Test Coverage](https://api.codeclimate.com/v1/badges/2298f12a7d6f31688c9c/test_coverage)](https://codeclimate.com/github/SouthernMade/sm_sms_campaign_webhook/test_coverage)
+[![Linting](https://github.com/SouthernMade/sm_sms_campaign_webhook/actions/workflows/linting.yml/badge.svg)](https://github.com/SouthernMade/sm_sms_campaign_webhook/actions/workflows/linting.yml)
+[![Security](https://github.com/SouthernMade/sm_sms_campaign_webhook/actions/workflows/security.yml/badge.svg)](https://github.com/SouthernMade/sm_sms_campaign_webhook/actions/workflows/security.yml)
 
 This gem will help app implementors using [Rails](https://rubyonrails.org) setup a webhook to ingest data from Southern Made's SMS campaign service. Processing the data can help with:
 
