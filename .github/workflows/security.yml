@@ -1,0 +1,19 @@
+name: Security
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  test:
+    name: 🔐 Scan Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bearer
+        uses: bearer/bearer-action@v2
+        with:
+          severity: critical,high,medium,low
+          skip-path: bin/*,coverage/*,doc/*,log/*,spec/rails_app/*,tmp/*
