@@ -2,7 +2,8 @@ name: Coverage
 
 on:
   push:
-    branches: [ develop ]
+    branches:
+      - develop
 
 jobs:
   coverage:
