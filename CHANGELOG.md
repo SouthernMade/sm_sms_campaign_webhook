@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - [2024-09-11]
+### Added
+- Ruby 3.2.x support
+- Ruby 3.3.x support
+- Rails 7.1.x support
+- Rails 7.2.x support
+
+### Removed
+- Ruby 2.7.x support
+- Ruby 3.0.x support
+- Support for Rails < 7.x
+
+### Changed
+- CI to test against Ruby 3.2.x
+- CI to test against Ruby 3.3.x
+
 ## [2.1.0] - 2022-01-07
 ### Added
 - Ruby 3.1.x support

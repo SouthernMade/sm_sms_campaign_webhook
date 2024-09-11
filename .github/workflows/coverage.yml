@@ -2,24 +2,24 @@ name: Coverage
 
 on:
   push:
-    branches: [ develop ]
+    branches:
+      - develop
 
 jobs:
   coverage:
-
+    name: 🔦 Quality Check
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Ruby
     # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
     # change this to (see https://github.com/ruby/setup-ruby#versioning):
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.0'
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Test coverage
-      uses: paambaati/codeclimate-action@v2.7.5
+      uses: paambaati/codeclimate-action@v9.0.0
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:

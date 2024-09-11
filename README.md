@@ -4,6 +4,8 @@
 
 [![Gem Version](https://badge.fury.io/rb/sm_sms_campaign_webhook.svg)](https://rubygems.org/gems/sm_sms_campaign_webhook)
 [![CI](https://github.com/SouthernMade/sm_sms_campaign_webhook/actions/workflows/ci.yml/badge.svg)](https://github.com/SouthernMade/sm_sms_campaign_webhook/actions/workflows/ci.yml)
+[![Linting](https://github.com/SouthernMade/sm_sms_campaign_webhook/actions/workflows/linting.yml/badge.svg)](https://github.com/SouthernMade/sm_sms_campaign_webhook/actions/workflows/linting.yml)
+[![Security](https://github.com/SouthernMade/sm_sms_campaign_webhook/actions/workflows/security.yml/badge.svg)](https://github.com/SouthernMade/sm_sms_campaign_webhook/actions/workflows/security.yml)
 [![Code Climate Maintainability](https://api.codeclimate.com/v1/badges/2298f12a7d6f31688c9c/maintainability)](https://codeclimate.com/github/SouthernMade/sm_sms_campaign_webhook/maintainability)
 [![Code Climate Test Coverage](https://api.codeclimate.com/v1/badges/2298f12a7d6f31688c9c/test_coverage)](https://codeclimate.com/github/SouthernMade/sm_sms_campaign_webhook/test_coverage)
 
@@ -42,12 +44,12 @@ Work closely with your Southern Made project manager to gather details about wha
 
 ## Installation
 
-This gem is tested with Rails 6.0.x, 6.1.x, 7.0.x versions.
+This gem is tested with Rails 7.0.x, 7.1.x, 7.2.x versions.
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "sm_sms_campaign_webhook", "~> 2.1"
+gem "sm_sms_campaign_webhook", "~> 3.0"
 ```
 
 And then execute:
