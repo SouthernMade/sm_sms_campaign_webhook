@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Rails 8.0.0 support
 
+### Removed
+- Ruby 3.1.x support
+
 ## [3.0.0] - [2024-09-11]
 ### Added
 - Ruby 3.2.x support
