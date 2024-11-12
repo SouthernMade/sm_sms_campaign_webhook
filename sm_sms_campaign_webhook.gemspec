@@ -33,10 +33,10 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Required version of Ruby guided by Rails.
-  spec.required_ruby_version = ">= 3.1.6"
+  spec.required_ruby_version = ">= 3.2.6"
 
   # Runtime dependencies.
-  spec.add_dependency "rails", [">= 7.0", "< 8.0"]
+  spec.add_dependency "rails", ">= 7.0", "< 9.0"
 
   # Development + test dependencies.
   spec.add_development_dependency "bundler", "~> 2.0"
