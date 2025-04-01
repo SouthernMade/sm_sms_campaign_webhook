@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Ruby 3.1.x support
+- Rails 7.0.x support
 
 ## [3.0.0] - [2024-09-11]
 ### Added
