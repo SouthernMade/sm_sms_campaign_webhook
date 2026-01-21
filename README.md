@@ -49,7 +49,7 @@ This gem is tested with Rails 7.2.x, 8.0.x, 8.1.x versions.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "sm_sms_campaign_webhook", "~> 3.0"
+gem "sm_sms_campaign_webhook", "~> 4.0"
 ```
 
 And then execute:
