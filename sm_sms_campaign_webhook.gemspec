@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 3.3.10"
 
   # Runtime dependencies.
-  spec.add_dependency "rails", ">= 7.1", "< 9.0"
+  spec.add_dependency "rails", ">= 7.2", "< 9.0"
 
   # Development + test dependencies.
   spec.add_development_dependency "bundler", "~> 2.0"
