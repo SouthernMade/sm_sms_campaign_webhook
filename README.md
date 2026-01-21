@@ -1,6 +1,6 @@
 # SmSmsCampaignWebhook
 
-[![Southern Made - Galaxy Logo](https://raw.github.com/SouthernMade/sm_sms_campaign_webhook/develop/logo_galaxymark.png)](https://www.southernmade.com/) by [Southern Made](https://www.southernmade.com/)
+[![Southern Made - Galaxy Logo](https://assets.southernmadeapps.com/logos/galaxymark.png)](https://www.southernmade.com/) by [Southern Made](https://www.southernmade.com/)
 
 [![Gem Version](https://badge.fury.io/rb/sm_sms_campaign_webhook.svg)](https://rubygems.org/gems/sm_sms_campaign_webhook)
 [![CI](https://github.com/SouthernMade/sm_sms_campaign_webhook/actions/workflows/ci.yml/badge.svg)](https://github.com/SouthernMade/sm_sms_campaign_webhook/actions/workflows/ci.yml)
@@ -44,12 +44,12 @@ Work closely with your Southern Made project manager to gather details about wha
 
 ## Installation
 
-This gem is tested with Rails 7.0.x, 7.1.x, 7.2.x versions.
+This gem is tested with Rails 7.2.x, 8.0.x, 8.1.x versions.
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "sm_sms_campaign_webhook", "~> 3.0"
+gem "sm_sms_campaign_webhook", "~> 4.0"
 ```
 
 And then execute:
