@@ -44,7 +44,7 @@ Work closely with your Southern Made project manager to gather details about wha
 
 ## Installation
 
-This gem is tested with Rails 7.1.x, 7.2.x, 8.0.x versions.
+This gem is tested with Rails 7.2.x, 8.0.x, 8.1.x versions.
 
 Add this line to your application's Gemfile:
 
