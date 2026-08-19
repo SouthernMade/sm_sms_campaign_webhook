@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+- Rails 7.2.x support
+
 ## [4.0.0] - [2026-01-21]
 ### Added
 - Rails 8.0.0 support

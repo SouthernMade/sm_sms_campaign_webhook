@@ -33,15 +33,15 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Required version of Ruby guided by Rails.
-  spec.required_ruby_version = ">= 3.3.10"
+  spec.required_ruby_version = ">= 3.3.12"
 
   # Runtime dependencies.
-  spec.add_dependency "rails", ">= 7.2", "< 9.0"
+  spec.add_dependency "rails", ">= 8.0", "< 9.0"
 
   # Development + test dependencies.
   spec.add_development_dependency "bundler", ">= 2.0"
   spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "rspec-rails", ">= 7.0"
+  spec.add_development_dependency "rspec-rails", ">= 8.0"
   spec.add_development_dependency "simplecov", "~> 0.20"
   spec.add_development_dependency "standard", "~> 1.0"
   spec.add_development_dependency "yard", "~> 0.9"
