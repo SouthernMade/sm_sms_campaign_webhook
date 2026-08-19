@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - develop
+  workflow_dispatch:
 
 jobs:
   coverage:
@@ -23,7 +24,7 @@ jobs:
       run: bundle exec rspec
 
     - name: Report coverage
-    - uses: qltysh/qlty-action/coverage@v2
+      uses: qltysh/qlty-action/coverage@v2
       with:
         token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
         files: coverage/coverage.json
