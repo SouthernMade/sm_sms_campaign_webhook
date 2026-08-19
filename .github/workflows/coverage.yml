@@ -18,9 +18,12 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
     - name: Test coverage
-      uses: paambaati/codeclimate-action@v9.0.0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      run: bundle exec rspec
+
+    - name: Report coverage
+    - uses: qltysh/qlty-action/coverage@v2
       with:
-        coverageCommand: bundle exec rspec
+        token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
+        files: coverage/coverage.json
