@@ -73,7 +73,7 @@ module Helpers
       (1..total_entries)
         .to_a
         .map { |num|
-          ["field#{num}", generate_answer_hash]
+        ["field#{num}", generate_answer_hash]
       }.to_h
     end
 
