@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         ruby-version: ['3.3', '3.4', '4.0']
-        gemfile: ['rails-7.2', 'rails-8.0', 'rails-8.1']
+        gemfile: ['rails-8.0', 'rails-8.1']
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/ci/gemfiles/${{ matrix.gemfile }}.gemfile
 
