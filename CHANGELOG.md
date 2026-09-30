@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Install generator initializer no longer breaks app boot by referencing the autoloaded processor during initialization
+
 ### Removed
 - Rails 7.2.x support
 

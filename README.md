@@ -179,12 +179,16 @@ App implementors must configure some library options. Here are all supported con
 ```ruby
 require "sm_sms_campaign_webhook"
 
-SmSmsCampaignWebhook.config do |config|
-  # SMS campaign payload processor implementing SmSmsCampaignWebhook::Processable behavior.
-  # default: SmSmsCampaignWebhook::DefaultProcessor (raises errors for processing)
-  # config.processor = SmsPayloadProcessor
+Rails.application.config.to_prepare do
+  SmSmsCampaignWebhook.config do |config|
+    # SMS campaign payload processor implementing SmSmsCampaignWebhook::Processable behavior.
+    # default: SmSmsCampaignWebhook::DefaultProcessor (raises errors for processing)
+    # config.processor = SmsPayloadProcessor
+  end
 end
 ```
+
+The config block runs inside `to_prepare` because a processor defined under `app/` is autoloaded, and Rails cannot autoload those constants while initializers run. Referencing it directly in the initializer fails at boot with `uninitialized constant SmsPayloadProcessor (NameError)`.
 
 ### Payload Processor
 
@@ -209,13 +213,15 @@ end
 
 This class will continue raising errors until the required methods are implemented. Please see the [Processable mixin](https://github.com/SouthernMade/sm_sms_campaign_webhook/blob/develop/app/processors/sm_sms_campaign_webhook/processable.rb) for expected method definitions.
 
-Finally the configuration needs to be updated to use the custom processor. Add this within the config block in `config/initializers/sm_sms_campaign_webhook.rb`:
+Finally the configuration needs to be updated to use the custom processor. Add this within the config block in `config/initializers/sm_sms_campaign_webhook.rb`, keeping the block inside `to_prepare` so the processor is resolved once the app can autoload it:
 
 ```ruby
-SmSmsCampaignWebhook.config do |config|
-  #...
-  config.processor = SmsPayloadProcessor
-  #...
+Rails.application.config.to_prepare do
+  SmSmsCampaignWebhook.config do |config|
+    #...
+    config.processor = SmsPayloadProcessor
+    #...
+  end
 end
 ```
 
