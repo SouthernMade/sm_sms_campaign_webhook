@@ -6,8 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Require Ruby >= 3.3.14
+
 ### Removed
 - Rails 7.2.x support
+- Rails 8.0.x support
 
 ## [4.0.0] - [2026-01-21]
 ### Added
